@@ -7,7 +7,7 @@
 <title>Lucas Henrique — Estratégia, Design & Tecnologia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Syne:wght@800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#07090d;
@@ -45,9 +45,9 @@
     touch-action:manipulation;
   }
   a{color:inherit;text-decoration:none}
-  .noise{position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:100;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E")}
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.04;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 1px,transparent 1px 3px)}
   .wrap{width:min(calc(100% - 40px),var(--max));margin:0 auto}
-  .nav{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(7,9,13,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:background .35s var(--ease), box-shadow .35s var(--ease)}
+  .nav{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(7,9,13,.82);border-bottom:1px solid var(--line);transition:background .35s var(--ease), box-shadow .35s var(--ease)}
   .nav:before{
     content:"";position:absolute;left:0;bottom:-1px;height:1px;
     width:calc(var(--scroll, 0) * 100%);
@@ -81,7 +81,7 @@
   .mobile-nav{
     position:fixed;inset:0;z-index:45;display:none;align-items:stretch;
     padding:calc(88px + env(safe-area-inset-top,0px)) 0 env(safe-area-inset-bottom,24px);
-    background:rgba(7,9,13,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+    background:rgba(7,9,13,.97);
     perspective:1200px;overscroll-behavior:contain;
   }
   .mobile-nav[hidden]{display:none !important}
@@ -102,11 +102,8 @@
   h1{font-size:clamp(50px,7.4vw,96px);line-height:.93;letter-spacing:-.065em;margin:24px 0 24px;max-width:880px}
   h1 .grad{
     background:linear-gradient(105deg,var(--cyan),#aab6ff 48%,var(--violet));
-    background-size:180% 100%;
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:grad-shift 9s var(--ease) infinite;
   }
-  @keyframes grad-shift{50%{background-position:100% 50%}}
   .lead{max-width:700px;font-size:clamp(18px,2.2vw,25px);line-height:1.45;color:#bec8d3;letter-spacing:-.02em}
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;font-weight:800;font-size:15px;border:1px solid var(--line);position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease), background .25s var(--ease), border-color .25s var(--ease)}
@@ -131,8 +128,8 @@
   .cube-3d{
     position:absolute;width:88px;height:88px;
     right:8%;top:12%;
+    transform:rotateX(-18deg) rotateY(-28deg);
     transform-style:preserve-3d;
-    animation:spin-cube 22s linear infinite;
     pointer-events:none;
   }
   .cube-3d i{
@@ -147,36 +144,48 @@
   .cube-3d i:nth-child(4){transform:rotateY(-90deg) translateZ(44px)}
   .cube-3d i:nth-child(5){transform:rotateX(90deg) translateZ(44px)}
   .cube-3d i:nth-child(6){transform:rotateX(-90deg) translateZ(44px)}
-  @keyframes spin-cube{to{transform:rotateX(-18deg) rotateY(360deg)}}
   .plane-3d{
     position:absolute;border:1px solid var(--line);border-radius:16px;
     background:rgba(255,255,255,.03);
     pointer-events:none;
   }
-  .plane-a{width:120px;height:72px;left:6%;top:18%;transform:rotateY(-28deg) translateZ(-40px);animation:plane-a 7s var(--ease) infinite}
-  .plane-b{width:86px;height:110px;right:4%;bottom:16%;transform:rotateY(22deg) translateZ(-24px);animation:plane-b 8.4s var(--ease) infinite}
-  @keyframes plane-a{50%{transform:rotateY(-28deg) translateZ(-40px) translateY(-10px)}}
-  @keyframes plane-b{50%{transform:rotateY(22deg) translateZ(-24px) translateY(8px)}}
+  .plane-a{width:120px;height:72px;left:6%;top:18%;transform:rotateY(-28deg) translateZ(-40px)}
+  .plane-b{width:86px;height:110px;right:4%;bottom:16%;transform:rotateY(22deg) translateZ(-24px)}
   .ring-3d{
     position:absolute;width:170px;height:170px;border-radius:50%;
     left:4%;bottom:10%;
     border:1px solid rgba(255,255,255,.1);
     border-top-color:rgba(102,228,255,.4);
     transform:rotateX(74deg) rotateZ(-24deg) translateZ(-80px);
-    animation:ring-spin 16s linear infinite;
     pointer-events:none;
   }
-  .ring-3d.sm{width:92px;height:92px;left:auto;right:18%;top:8%;bottom:auto;animation-duration:11s;animation-direction:reverse;border-top-color:rgba(157,108,255,.42)}
-  @keyframes ring-spin{to{transform:rotateX(74deg) rotateZ(336deg) translateZ(-80px)}}
-  .orb{position:absolute;width:390px;height:390px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(102,228,255,.6),rgba(92,124,255,.18) 35%,rgba(157,108,255,.05) 65%,transparent 72%);filter:blur(3px);animation:float 7s ease-in-out infinite;will-change:transform}
+  .ring-3d.sm{width:92px;height:92px;left:auto;right:18%;top:8%;bottom:auto;border-top-color:rgba(157,108,255,.42)}
+  .orb{position:absolute;width:390px;height:390px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(102,228,255,.55),rgba(92,124,255,.16) 35%,rgba(157,108,255,.04) 65%,transparent 72%);pointer-events:none}
+  .glass-track{
+    position:relative;z-index:2;width:min(100%,420px);
+    transform:translate3d(0,var(--paray,0px),0);
+    will-change:transform;
+  }
   .glass-card{
-    position:relative;width:min(100%,420px);z-index:2;
+    position:relative;width:100%;
     border:1px solid rgba(255,255,255,.12);border-radius:30px;
-    background:linear-gradient(155deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
-    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:28px;
-    box-shadow:0 30px 90px rgba(0,0,0,.38);
+    background:linear-gradient(155deg,rgba(255,255,255,.09),rgba(255,255,255,.04));
+    padding:28px;
+    box-shadow:0 24px 60px rgba(0,0,0,.32);
     transform:rotateY(-10deg) rotateX(8deg) rotateZ(2deg);
     transform-style:preserve-3d;
+  }
+  @supports (animation-timeline: scroll()){
+    .glass-track{
+      animation:glass-par linear both;
+      animation-timeline:scroll();
+      animation-range:0vh 85vh;
+      will-change:auto;
+    }
+    @keyframes glass-par{
+      from{transform:translate3d(0,28px,0)}
+      to{transform:translate3d(0,-132px,0)}
+    }
   }
   .glass-card:after{
     content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
@@ -190,18 +199,11 @@
   .glass-card h3{font-size:31px;line-height:1.02;letter-spacing:-.045em;margin:0 0 20px}
   .service-chips{display:flex;flex-wrap:wrap;gap:8px}
   .chip{padding:9px 11px;border:1px solid var(--line);border-radius:11px;color:#c5ced8;background:rgba(255,255,255,.035);font-size:13px;transition:transform .35s var(--ease), border-color .25s var(--ease)}
-  .chip:hover,.chip:active{transform:translateY(-2px) translateZ(8px);border-color:rgba(255,255,255,.18)}
-  .js-ready .chip{animation:chip-in .6s var(--ease) both}
-  .js-ready .chip:nth-child(1){animation-delay:.15s}
-  .js-ready .chip:nth-child(2){animation-delay:.22s}
-  .js-ready .chip:nth-child(3){animation-delay:.29s}
-  .js-ready .chip:nth-child(4){animation-delay:.36s}
-  @keyframes chip-in{from{opacity:0;transform:translateY(8px) rotateX(20deg)}to{opacity:1;transform:none}}
+  .chip:hover,.chip:active{transform:translateY(-2px);border-color:rgba(255,255,255,.18)}
   .metric-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
   .metric{border-radius:16px;padding:16px;background:#0b1017;border:1px solid var(--line)}
   .metric strong{display:block;font-size:25px;letter-spacing:-.04em}
   .metric span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.11em}
-  @keyframes float{50%{transform:translateY(-16px) scale(1.02)}}
 
   section{padding:110px 0;border-top:1px solid var(--line)}
   section[id],.hero{scroll-margin-top:88px}
@@ -215,7 +217,7 @@
   .section-copy{color:var(--muted);font-size:18px;max-width:700px;margin:18px 0 0}
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .card{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);padding:28px;min-height:260px;position:relative;overflow:hidden;transform-style:preserve-3d;contain:layout style;transition:transform .5s var(--ease), border-color .35s var(--ease)}
-  .card:before{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(92,124,255,.12);filter:blur(45px);right:-50px;top:-50px}
+  .card:before{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(92,124,255,.1);right:-50px;top:-50px}
   .num{font-size:12px;color:#7f8b98;letter-spacing:.12em;text-transform:uppercase}
   .card h3{font-size:27px;line-height:1.05;letter-spacing:-.04em;margin:38px 0 15px}
   .card p{color:var(--muted);font-size:15px;margin:0}
@@ -382,9 +384,9 @@
   .proj-viewer-frame iframe{width:100%;height:100%;border:0;display:block;background:#fff}
   body.viewer-open{overflow:hidden}
 
-  .cta-section{padding:130px 0;perspective:1400px}
-  .cta-box{position:relative;overflow:hidden;padding:60px;border-radius:36px;background:#f7f9fc;color:#080b10;transform-style:preserve-3d}
-  .cta-box:after{content:"";position:absolute;width:390px;height:390px;border-radius:50%;right:-120px;top:-160px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));filter:blur(65px);opacity:.55}
+  .cta-section{padding:130px 0}
+  .cta-box{position:relative;overflow:hidden;padding:60px;border-radius:36px;background:#f7f9fc;color:#080b10}
+  .cta-box:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-80px;top:-100px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));opacity:.28}
   .cta-box>*{position:relative;z-index:2}
   .cta-box .kicker{color:#3547ab;padding:0 0 16px}
   .cta-box h2{max-width:840px}
@@ -398,13 +400,11 @@
   .reveal{opacity:1;transform:none}
   .js-ready .reveal{
     opacity:0;
-    transform:translateY(28px) rotateX(8deg);
-    transform-origin:50% 100%;
-    transition:opacity .85s var(--ease), transform .85s var(--ease);
+    transform:translateY(18px);
+    transition:opacity .55s var(--ease), transform .55s var(--ease);
     transition-delay:var(--d, 0s);
   }
   .js-ready .reveal.visible{opacity:1;transform:none}
-  .paused .cube-3d,.paused .orb,.paused .plane-3d,.paused .ring-3d,.paused h1 .grad{animation-play-state:paused}
   @media(max-width:900px){
     .nav-links{display:none}
     .nav-toggle{display:flex}
@@ -423,7 +423,8 @@
     .plane-b{width:62px;height:84px;right:0;bottom:12%}
     .ring-3d{width:120px;height:120px;left:-6%;bottom:8%}
     .ring-3d.sm{width:68px;height:68px;right:8%;top:6%}
-    .glass-card{transform:rotateY(-8deg) rotateX(6deg) rotateZ(1deg);width:min(100%,400px)}
+    .glass-track{width:min(100%,400px)}
+    .glass-card{transform:rotateY(-8deg) rotateX(6deg) rotateZ(1deg)}
     .grid-3,.timeline,.usecases{grid-template-columns:1fr}
     .timeline .step{min-height:auto}
     .deliver-grid,.method-grid{grid-template-columns:1fr}
@@ -455,9 +456,9 @@
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
-    .orb,.cube-3d,.plane-3d,.ring-3d,h1 .grad,.js-ready .chip,.mobile-nav.open{animation:none}
+    .orb,.js-ready .chip,.mobile-nav.open,.glass-track{animation:none}
     .cube-3d,.plane-3d,.ring-3d{display:none}
-    .glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.proj-cta:hover,.brand:hover .brand-mark,.brand:active .brand-mark,.cta-box{transform:none !important}
+    .glass-track,.glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.proj-cta:hover,.brand:hover .brand-mark,.brand:active .brand-mark,.cta-box{transform:none !important}
     .card:hover,.card:active,.principle:hover,.principle:active,.problem:hover,.problem:active,.step:hover,.step:active,.deliver:hover,.deliver:active,.usecase:hover,.usecase:active,.statement:hover,.statement:active,.question-box:hover,.question-box:active,.method:hover,.method:active,.proj-card:hover,.proj-card:active{transform:none}
     .proj-card:hover .proj-cover,.proj-card:active .proj-cover{transform:none}
     .btn-primary:after{display:none}
@@ -467,7 +468,7 @@
 </style>
 </head>
 <body>
-<div class="noise"></div>
+<div class="grain"></div>
 <nav class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#inicio"><span class="brand-mark"></span><span>Lucas Henrique</span></a>
@@ -511,6 +512,7 @@
         <div class="ring-3d" aria-hidden="true"></div>
         <div class="ring-3d sm" aria-hidden="true"></div>
         <div class="orb"></div>
+        <div class="glass-track">
         <div class="glass-card">
           <div class="glass-top"><span class="mini-label">Meu foco</span><span class="status">● projetos digitais</span></div>
           <h3>Construir experiências digitais que sejam fáceis de entender — e úteis de verdade.</h3>
@@ -521,6 +523,7 @@
             <div class="metric"><strong>01</strong><span>visão ponta a ponta</span></div>
             <div class="metric"><strong>∞</strong><span>espaço para evoluir</span></div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -850,13 +853,12 @@
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   try{
     var groups = document.querySelectorAll('.grid-3,.timeline,.deliver-grid,.method-grid,.usecases,.principles,.problem-list,.proj-grid');
     for(var g=0;g<groups.length;g++){
       var kids = groups[g].children;
-      for(var k=0;k<kids.length;k++) kids[k].style.setProperty('--d', (k * 0.07) + 's');
+      for(var k=0;k<kids.length;k++) kids[k].style.setProperty('--d', (k * 0.05) + 's');
     }
   }catch(err){}
 
@@ -878,136 +880,29 @@
 
   try{
     var nav = document.querySelector('.nav');
-    if(nav){
+    var glassTrack = document.querySelector('.glass-track');
+    var cssParallax = !!(window.CSS && CSS.supports && (CSS.supports('animation-timeline: scroll()') || CSS.supports('animation-timeline', 'scroll()')));
+    if(nav || (glassTrack && !reduce)){
       var ticking = false;
       var onScroll = function(){
         if(ticking) return;
         ticking = true;
         requestAnimationFrame(function(){
           var y = window.scrollY || 0;
-          nav.classList.toggle('scrolled', y > 12);
-          var max = document.documentElement.scrollHeight - window.innerHeight;
-          nav.style.setProperty('--scroll', max > 0 ? String(y / max) : '0');
+          if(nav){
+            nav.classList.toggle('scrolled', y > 12);
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            nav.style.setProperty('--scroll', max > 0 ? String(y / max) : '0');
+          }
+          if(glassTrack && !reduce && !cssParallax){
+            var paray = Math.max(-132, Math.min(28, 28 - y * 0.22));
+            glassTrack.style.setProperty('--paray', paray.toFixed(1) + 'px');
+          }
           ticking = false;
         });
       };
       window.addEventListener('scroll', onScroll, {passive:true});
       onScroll();
-    }
-  }catch(err){}
-
-  try{
-    document.addEventListener('visibilitychange', function(){
-      document.documentElement.classList.toggle('paused', document.hidden);
-    });
-  }catch(err){}
-
-  try{
-    if(!reduce){
-      var panel = document.querySelector('.hero-panel');
-      var stage = document.querySelector('.stage-3d');
-      var glass = document.querySelector('.glass-card');
-      var cta = document.querySelector('.cta-box');
-      var tx = 0, ty = 0, cx = 0, cy = 0, running = false;
-      var ctx = 0, cty = 0, ccx = 0, ccy = 0;
-      var gyroX = 0, gyroY = 0, hasGyro = false, touching = false;
-      var heroIn = true, ctaIn = false;
-      var always = !fine;
-
-      var loop = function(){
-        var t = performance.now();
-        var ix = 0, iy = 0, cix = 0, ciy = 0;
-        if(always && !hasGyro && !touching){
-          ix = Math.sin(t / 1800) * 0.55;
-          iy = Math.cos(t / 2200) * 0.34;
-          cix = Math.sin(t / 2400) * 0.32;
-          ciy = Math.cos(t / 2600) * 0.2;
-        }
-        if(always && heroIn && panel){
-          var pr = panel.getBoundingClientRect();
-          var mid = (pr.top + pr.height / 2 - window.innerHeight / 2) / window.innerHeight;
-          iy += Math.max(-0.35, Math.min(0.35, mid));
-        }
-        var hx = touching ? tx : (hasGyro ? gyroX : (Math.abs(tx) > 0.04 ? tx : ix));
-        var hy = touching ? ty : (hasGyro ? gyroY : (Math.abs(ty) > 0.04 ? ty : iy));
-        var chx = touching ? ctx : (hasGyro ? gyroX * 0.7 : (Math.abs(ctx) > 0.04 ? ctx : cix));
-        var chy = touching ? cty : (hasGyro ? gyroY * 0.7 : (Math.abs(cty) > 0.04 ? cty : ciy));
-        cx += (hx - cx) * 0.08;
-        cy += (hy - cy) * 0.08;
-        ccx += (chx - ccx) * 0.08;
-        ccy += (chy - ccy) * 0.08;
-        if(stage) stage.style.transform = 'rotateX(' + (-cy * 7).toFixed(3) + 'deg) rotateY(' + (cx * 9).toFixed(3) + 'deg)';
-        if(glass) glass.style.transform = 'rotateY(' + (-10 + cx * 12).toFixed(3) + 'deg) rotateX(' + (8 - cy * 10).toFixed(3) + 'deg) rotateZ(2deg)';
-        if(cta) cta.style.transform = 'rotateX(' + (-ccy * 5).toFixed(3) + 'deg) rotateY(' + (ccx * 6).toFixed(3) + 'deg)';
-        var moving = Math.abs(hx-cx) > 0.002 || Math.abs(hy-cy) > 0.002 || Math.abs(chx-ccx) > 0.002 || Math.abs(chy-ccy) > 0.002;
-        if(always && (heroIn || ctaIn || touching || hasGyro)) requestAnimationFrame(loop);
-        else if(moving) requestAnimationFrame(loop);
-        else running = false;
-      };
-      var kick = function(){
-        if(!running){ running = true; requestAnimationFrame(loop); }
-      };
-      var bindTilt = function(el, setX, setY){
-        if(!el) return;
-        el.addEventListener('pointerdown', function(e){
-          touching = true;
-          var r = el.getBoundingClientRect();
-          if(r.width && r.height){
-            setX(((e.clientX - r.left) / r.width - 0.5) * 2);
-            setY(((e.clientY - r.top) / r.height - 0.5) * 2);
-          }
-          kick();
-        });
-        el.addEventListener('pointermove', function(e){
-          var r = el.getBoundingClientRect();
-          if(!r.width || !r.height) return;
-          setX(((e.clientX - r.left) / r.width - 0.5) * 2);
-          setY(((e.clientY - r.top) / r.height - 0.5) * 2);
-          kick();
-        }, {passive:true});
-        el.addEventListener('pointerup', function(){ touching = false; setX(0); setY(0); kick(); });
-        el.addEventListener('pointercancel', function(){ touching = false; setX(0); setY(0); kick(); });
-        el.addEventListener('pointerleave', function(){ touching = false; setX(0); setY(0); kick(); });
-      };
-      bindTilt(panel, function(v){ tx = v; }, function(v){ ty = v; });
-      bindTilt(cta, function(v){ ctx = v; }, function(v){ cty = v; });
-
-      var attachGyro = function(){
-        window.addEventListener('deviceorientation', function(e){
-          hasGyro = true;
-          gyroX = Math.max(-1, Math.min(1, (e.gamma || 0) / 30));
-          gyroY = Math.max(-1, Math.min(1, ((e.beta || 0) - 45) / 35));
-          kick();
-        }, {passive:true});
-      };
-      if(window.DeviceOrientationEvent){
-        if(typeof DeviceOrientationEvent.requestPermission === 'function'){
-          var asked = false;
-          var askGyro = function(){
-            if(asked) return;
-            asked = true;
-            DeviceOrientationEvent.requestPermission().then(function(state){
-              if(state === 'granted') attachGyro();
-            }).catch(function(){});
-          };
-          if(panel) panel.addEventListener('pointerdown', askGyro, {passive:true});
-        } else {
-          attachGyro();
-        }
-      }
-
-      if(always && 'IntersectionObserver' in window){
-        var vis = new IntersectionObserver(function(entries){
-          for(var i=0;i<entries.length;i++){
-            if(entries[i].target === panel) heroIn = entries[i].isIntersecting;
-            if(entries[i].target === cta) ctaIn = entries[i].isIntersecting;
-          }
-          kick();
-        }, {threshold:0.08});
-        if(panel) vis.observe(panel);
-        if(cta) vis.observe(cta);
-      }
-      kick();
     }
   }catch(err){}
 
