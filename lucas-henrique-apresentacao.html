@@ -150,10 +150,15 @@
     min-height:0;
   }
   .proj-cover-wrap{
-    display:block;aspect-ratio:16/10;overflow:hidden;
-    background:#0b1017;border-bottom:1px solid var(--line);
+    display:grid;place-items:center;
+    aspect-ratio:21/10;
+    background:#080b10;border-bottom:1px solid var(--line);
   }
-  .proj-cover{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .proj-cover{
+    width:100%;height:100%;
+    object-fit:contain;object-position:center;
+    display:block;
+  }
   .proj-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
   .proj-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
   .proj-index{font-size:12px;color:#7f8b98;letter-spacing:.12em;text-transform:uppercase}
@@ -423,7 +428,7 @@
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://ops-hub-portfolio-demo.vercel.app/login?next=%2F" data-title="Ops Hub">
-            <img class="proj-cover" src="assets/covers/ops-hub.png" alt="Capa do Ops Hub" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/ops-hub.png" alt="Capa do Ops Hub" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">01</span><span class="kind">Operação</span></div>
@@ -434,7 +439,7 @@
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://odontology-finance.vercel.app/dashboard" data-title="Odontology Finance">
-            <img class="proj-cover" src="assets/covers/odontology-finance.png" alt="Capa do Odontology Finance" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/odontology-finance.png" alt="Capa do Odontology Finance" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">02</span><span class="kind">Financeiro</span></div>
@@ -451,7 +456,7 @@
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://evolucaofisica-cursor.vercel.app/login" data-title="FORMA">
-            <img class="proj-cover" src="assets/covers/forma.png" alt="Capa do FORMA" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/forma.png" alt="Capa do FORMA" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">03</span><span class="kind">Produto · Saúde</span></div>
@@ -468,7 +473,7 @@
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://terus-platform-web.vercel.app/" data-title="Terus.TEC">
-            <img class="proj-cover" src="assets/covers/terus-platform.png" alt="Capa da Terus.TEC" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/terus-platform.png" alt="Capa da Terus.TEC" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">04</span><span class="kind">Institucional</span></div>
@@ -479,7 +484,7 @@
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://champions-idiomas.vercel.app/" data-title="Champions Idiomas">
-            <img class="proj-cover" src="assets/covers/champions-idiomas.png" alt="Capa da Champions Idiomas" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/champions-idiomas.png" alt="Capa da Champions Idiomas" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">05</span><span class="kind">Institucional</span></div>
@@ -496,7 +501,7 @@
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://malu-nutri.vercel.app/" data-title="Malu Nutri">
-            <img class="proj-cover" src="assets/covers/malu-nutri.png" alt="Capa da Malu Nutri" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/malu-nutri.png" alt="Capa da Malu Nutri" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">06</span><span class="kind">Conversão</span></div>
@@ -507,7 +512,7 @@
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://terusfarm.vercel.app/" data-title="Terus Farm">
-            <img class="proj-cover" src="assets/covers/terus-farm.png" alt="Capa do Terus Farm" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/terus-farm.png" alt="Capa do Terus Farm" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">07</span><span class="kind">Conversão</span></div>
@@ -518,7 +523,7 @@
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://arthurnutrilp.vercel.app/" data-title="Arthur Anadon">
-            <img class="proj-cover" src="assets/covers/arthur-anadon.png" alt="Capa da landing Arthur Anadon" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/arthur-anadon.png" alt="Capa da landing Arthur Anadon" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">08</span><span class="kind">Conversão</span></div>
@@ -529,7 +534,7 @@
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://lpsamuel.vercel.app/" data-title="Grupo Atlas">
-            <img class="proj-cover" src="assets/covers/grupo-atlas.png" alt="Capa da landing Grupo Atlas" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/grupo-atlas.png" alt="Capa da landing Grupo Atlas" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">09</span><span class="kind">Conversão</span></div>
@@ -546,7 +551,7 @@
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall">
-            <img class="proj-cover" src="assets/covers/lm-mall.jpg" alt="Capa do LM Office &amp; Mall" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/lm-mall.jpg" alt="Capa do LM Office &amp; Mall" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">10</span><span class="kind">Imobiliário</span></div>
@@ -557,7 +562,7 @@
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence">
-            <img class="proj-cover" src="assets/covers/makani.jpg" alt="Capa do Makani Beach Residence" width="1280" height="800" loading="lazy">
+            <img class="proj-cover" src="assets/covers/makani.jpg" alt="Capa do Makani Beach Residence" width="1920" height="910" loading="lazy">
           </a>
           <div class="proj-body">
             <div class="proj-meta"><span class="proj-index">11</span><span class="kind">Imobiliário</span></div>
