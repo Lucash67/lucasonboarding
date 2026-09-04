@@ -132,72 +132,59 @@
   .usecase h3{font-size:24px;letter-spacing:-.035em;margin:0 0 10px}
   .usecase p{color:var(--muted);font-size:14px;margin:0}
 
+  .proj-group{margin-top:52px}
+  .proj-group:first-of-type{margin-top:0}
+  .proj-group-title{
+    font-size:13px;color:var(--cyan);font-weight:800;
+    text-transform:uppercase;letter-spacing:.14em;
+    margin:0 0 16px;
+  }
   .proj-grid{display:grid;gap:16px}
   .proj-card{
     display:flex;flex-direction:column;
     background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:24px;
+    overflow:hidden;
+    padding:0;
     min-height:0;
   }
-  .proj-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .proj-cover-wrap{
+    display:block;aspect-ratio:16/10;overflow:hidden;
+    background:#0b1017;border-bottom:1px solid var(--line);
+  }
+  .proj-cover{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .proj-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+  .proj-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
   .proj-index{font-size:12px;color:#7f8b98;letter-spacing:.12em;text-transform:uppercase}
   .kind{font-size:12px;color:var(--cyan);font-weight:800;letter-spacing:.04em}
-  .proj-preview{
-    position:relative;aspect-ratio:16/10;border-radius:18px;
-    border:1px solid var(--line);background:#0b1017;overflow:hidden;
-  }
-  .proj-card h3{font-size:24px;letter-spacing:-.04em;margin:20px 0 10px;line-height:1.12}
+  .proj-card h3{font-size:24px;letter-spacing:-.04em;margin:12px 0 8px;line-height:1.12}
   .proj-card .blurb{color:var(--muted);font-size:15px;flex:1;margin:0}
-  .proj-stack{color:#7f8b98;font-size:12px;margin:14px 0 0;letter-spacing:.02em}
-  .proj-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:14px;font-weight:700}
-  .proj-links a.code{color:var(--muted);font-weight:600}
-  .proj-links a:hover{color:var(--cyan)}
-  .proj-also{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
-  .proj-also .kind{display:block;margin-bottom:12px}
-  .proj-also ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 28px}
-  .proj-also a{color:var(--muted);font-size:14px}
-  .proj-also a:hover{color:var(--text)}
+  .proj-cta{margin-top:16px;font-size:14px;font-weight:800}
+  .proj-cta:hover{color:var(--cyan)}
   @media(min-width:760px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(min-width:1100px){.proj-grid{grid-template-columns:repeat(3,1fr)}}
 
-  .mock{position:absolute;inset:0}
-  .mock-app{display:grid;grid-template-columns:42px 1fr;height:100%;background:#0b1017}
-  .mock-side{background:#080b10;border-right:1px solid var(--line);padding:10px 8px;display:grid;align-content:start;gap:6px}
-  .mock-side b{display:block;height:3px;border-radius:99px;background:rgba(255,255,255,.16)}
-  .mock-side b:first-child{width:70%;background:var(--cyan);opacity:.75}
-  .mock-side b:nth-child(2){width:54%}
-  .mock-side b:nth-child(3){width:62%}
-  .mock-side b:nth-child(4){width:40%;margin-top:8px}
-  .mock-main{padding:12px;display:grid;align-content:start;gap:8px}
-  .mock-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-  .mock-kpis i{display:block;height:28px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
-  .mock-chart{height:54px;border-radius:10px;border:1px solid var(--line);background:repeating-linear-gradient(90deg,transparent,transparent 12px,rgba(255,255,255,.03) 12px,rgba(255,255,255,.03) 13px)}
-  .mock-chart:after{content:"";display:block;height:100%;width:70%;background:linear-gradient(90deg,transparent,rgba(92,124,255,.4));clip-path:polygon(0 80%,18% 62%,36% 70%,54% 40%,72% 48%,100% 22%,100% 100%,0 100%);opacity:.75}
-  .mock-site{height:100%;padding:16px;display:grid;align-content:center;gap:8px;background:radial-gradient(ellipse at 80% 0%,rgba(102,228,255,.12),transparent 46%),#0b1017}
-  .mock-site .line{height:8px;border-radius:99px;background:rgba(255,255,255,.78);width:72%}
-  .mock-site .line.sub{width:48%;height:5px;background:rgba(255,255,255,.22)}
-  .mock-site .cta{width:64px;height:16px;border-radius:99px;background:var(--cyan);opacity:.8;margin-top:6px}
-  .mock-site .pills{display:flex;gap:6px;margin-top:8px}
-  .mock-site .pills i{width:42px;height:12px;border-radius:99px;border:1px solid var(--line)}
-  .mock-phone{height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 80%,rgba(157,108,255,.14),transparent 52%),#0b1017}
-  .phone-bezel{width:86px;height:132px;border-radius:16px;border:1.5px solid rgba(255,255,255,.16);background:#07090d;padding:10px 8px 8px}
-  .phone-notch{width:28px;height:4px;border-radius:99px;background:rgba(255,255,255,.16);margin:0 auto 10px}
-  .phone-ui{display:grid;gap:7px;justify-items:center}
-  .phone-ui b{font-size:.62rem;letter-spacing:.14em;color:var(--cyan);font-weight:800}
-  .phone-ui i{display:block;height:8px;width:100%;border-radius:4px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
-  .phone-ui em{display:block;height:14px;width:70%;border-radius:99px;background:rgba(92,124,255,.4);font-style:normal}
-  .mock-estate{height:100%;display:grid;grid-template-rows:1fr 42%;background:#0b1017}
-  .mock-hero-band{background:linear-gradient(180deg,rgba(7,9,13,.08),rgba(7,9,13,.55)),linear-gradient(135deg,rgba(92,124,255,.28),rgba(157,108,255,.12) 50%,rgba(102,228,255,.1))}
-  .mock-estate-copy{padding:10px 12px;display:grid;align-content:center;gap:6px}
-  .mock-estate-copy .line{height:6px;width:58%;border-radius:99px;background:rgba(255,255,255,.7)}
-  .mock-estate-copy .line.sub{width:36%;height:4px;background:rgba(255,255,255,.2)}
-  .mock-manor .mock-hero-band{background:linear-gradient(160deg,#101827,rgba(157,108,255,.18))}
-  .mock-mall{height:100%;display:grid;grid-template-columns:1fr 1fr}
-  .mock-mall span{display:grid;place-items:end start;padding:12px;border-right:1px solid var(--line);font-size:.62rem;color:#7f8b98;letter-spacing:.08em;text-transform:uppercase}
-  .mock-mall span:last-child{border:0;background:rgba(92,124,255,.07)}
-  .mock-mall b{font-size:.82rem;color:var(--text);letter-spacing:-.03em;text-transform:none;font-weight:800}
+  .proj-viewer{
+    position:fixed;inset:0;z-index:200;
+    display:none;flex-direction:column;
+    background:rgba(7,9,13,.94);
+    padding:16px;
+  }
+  .proj-viewer[hidden]{display:none !important}
+  .proj-viewer.open{display:flex}
+  .proj-viewer-bar{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    width:min(100%,1180px);margin:0 auto 12px;
+  }
+  .proj-viewer-bar strong{flex:1;min-width:160px;font-size:15px;letter-spacing:-.02em}
+  .proj-viewer-bar .btn{padding:10px 14px;font-size:13px}
+  .proj-viewer-frame{
+    flex:1;width:min(100%,1180px);margin:0 auto;
+    border:1px solid var(--line);border-radius:18px;
+    background:#fff;overflow:hidden;min-height:0;
+  }
+  .proj-viewer-frame iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+  body.viewer-open{overflow:hidden}
 
   .cta-section{padding:130px 0}
   .cta-box{position:relative;overflow:hidden;padding:60px;border-radius:36px;background:#f7f9fc;color:#080b10}
@@ -239,7 +226,8 @@
     .glass-card{padding:22px;border-radius:24px}
     .metric-row{grid-template-columns:1fr}
     section{padding:70px 0}
-    .card,.statement,.question-box,.method,.cta-box,.proj-card{padding:24px}
+    .card,.statement,.question-box,.method,.cta-box{padding:24px}
+    .proj-body{padding:20px}
     .cta-section{padding:80px 0}
     .footer-inner{align-items:flex-start;flex-direction:column}
   }
@@ -426,108 +414,173 @@
       <div class="kicker">08 · Projetos</div>
       <div>
         <h2>Coisas que saíram da pasta para o ar.</h2>
-        <p class="section-copy">Curadoria, não despejo. Todo link abaixo abre no navegador agora.</p>
+        <p class="section-copy">Sistemas, presença institucional e landings. Clique no card para abrir a demo — de preferência aqui mesmo; se o site não permitir, abre em uma nova aba.</p>
       </div>
     </div>
 
-    <!-- Novo projeto: copie um <article class="proj-card"> e atualize índice, tag, mockup, textos e links. -->
-    <div class="proj-grid">
-      <article class="proj-card reveal">
-        <div class="proj-meta"><span class="proj-index">01</span><span class="kind">Financeiro</span></div>
-        <div class="proj-preview" aria-hidden="true">
-          <div class="mock mock-app"><div class="mock-side"><b></b><b></b><b></b><b></b></div><div class="mock-main"><div class="mock-kpis"><i></i><i></i><i></i></div><div class="mock-chart"></div></div></div>
-        </div>
-        <h3>Odontology Finance</h3>
-        <p class="blurb">Controle financeiro para consultório odontológico. Pacientes, parcelas, inadimplência e contas a pagar num fluxo de uso diário, não em relatório de fim de mês. A demo pública roda com dados fictícios.</p>
-        <p class="proj-stack">React · TypeScript · Vite · Vercel</p>
-        <div class="proj-links">
-          <a href="https://odontology-finance.vercel.app" target="_blank" rel="noreferrer">Abrir projeto ↗</a>
-          <a class="code" href="https://github.com/Lucash67/odontology-finance" target="_blank" rel="noreferrer">Ver código</a>
-        </div>
-      </article>
-
-      <article class="proj-card reveal">
-        <div class="proj-meta"><span class="proj-index">02</span><span class="kind">Presença digital</span></div>
-        <div class="proj-preview" aria-hidden="true">
-          <div class="mock mock-site"><div class="line"></div><div class="line sub"></div><div class="cta"></div><div class="pills"><i></i><i></i></div></div>
-        </div>
-        <h3>Malu Nutri</h3>
-        <p class="blurb">Página de acompanhamento nutricional para uma profissional. Identidade, apresentação do serviço e um único próximo passo sempre visível — serviço contínuo se sustenta em confiança, não em cartão de visita.</p>
-        <p class="proj-stack">React · JavaScript · Vercel</p>
-        <div class="proj-links">
-          <a href="https://malu-nutri.vercel.app" target="_blank" rel="noreferrer">Abrir projeto ↗</a>
-          <a class="code" href="https://github.com/Lucash67/malu_nutri" target="_blank" rel="noreferrer">Ver código</a>
-        </div>
-      </article>
-
-      <article class="proj-card reveal">
-        <div class="proj-meta"><span class="proj-index">03</span><span class="kind">Produto · Saúde</span></div>
-        <div class="proj-preview" aria-hidden="true">
-          <div class="mock mock-phone"><div class="phone-bezel"><div class="phone-notch"></div><div class="phone-ui"><b>FORMA</b><i></i><i></i><em></em></div></div></div>
-        </div>
-        <h3>Evolução Física</h3>
-        <p class="blurb">Organização de dieta, treino e acompanhamento pessoal. Rotina costuma morar em três apps e um caderno; quero um lugar só para registrar e comparar ao longo do tempo.</p>
-        <p class="proj-stack">React · TypeScript · Vite</p>
-        <div class="proj-links">
-          <a href="https://evolucaofisica-cursor.vercel.app" target="_blank" rel="noreferrer">Abrir projeto ↗</a>
-          <a class="code" href="https://github.com/Lucash67/evolucaofisica-cursor" target="_blank" rel="noreferrer">Ver código</a>
-        </div>
-      </article>
-
-      <article class="proj-card reveal">
-        <div class="proj-meta"><span class="proj-index">04</span><span class="kind">Imobiliário</span></div>
-        <div class="proj-preview" aria-hidden="true">
-          <div class="mock mock-estate"><div class="mock-hero-band"></div><div class="mock-estate-copy"><div class="line"></div><div class="line sub"></div></div></div>
-        </div>
-        <h3>Makani Beach Residence</h3>
-        <p class="blurb">Landing de um empreendimento à beira-mar. Página longa e visual, com plantas, localização e um objetivo só: a próxima mensagem.</p>
-        <p class="proj-stack">HTML · CSS · JavaScript</p>
-        <div class="proj-links">
-          <a href="https://lucash67.github.io/makani/" target="_blank" rel="noreferrer">Abrir projeto ↗</a>
-          <a class="code" href="https://github.com/Lucash67/makani" target="_blank" rel="noreferrer">Ver código</a>
-        </div>
-      </article>
-
-      <article class="proj-card reveal">
-        <div class="proj-meta"><span class="proj-index">05</span><span class="kind">Imobiliário</span></div>
-        <div class="proj-preview" aria-hidden="true">
-          <div class="mock mock-estate mock-manor"><div class="mock-hero-band"></div><div class="mock-estate-copy"><div class="line"></div><div class="line sub"></div></div></div>
-        </div>
-        <h3>Mansão Guerreiro</h3>
-        <p class="blurb">Versão autoral de uma landing de alto padrão. O material original competia com o imóvel; refiz para que a página tivesse o mesmo silêncio do produto.</p>
-        <p class="proj-stack">HTML · CSS · JavaScript</p>
-        <div class="proj-links">
-          <a href="https://lucash67.github.io/mansaoclaude/" target="_blank" rel="noreferrer">Abrir projeto ↗</a>
-          <a class="code" href="https://github.com/Lucash67/mansaoclaude" target="_blank" rel="noreferrer">Ver código</a>
-        </div>
-      </article>
-
-      <article class="proj-card reveal">
-        <div class="proj-meta"><span class="proj-index">06</span><span class="kind">Imobiliário</span></div>
-        <div class="proj-preview" aria-hidden="true">
-          <div class="mock mock-mall"><span><b>Usar</b></span><span><b>Investir</b></span></div>
-        </div>
-        <h3>LM Office &amp; Mall</h3>
-        <p class="blurb">Empreendimento comercial apresentado para dois públicos ao mesmo tempo — quem compra para usar e quem compra para investir.</p>
-        <p class="proj-stack">HTML · CSS · JavaScript</p>
-        <div class="proj-links">
-          <a href="https://lucash67.github.io/lm-mall/" target="_blank" rel="noreferrer">Abrir projeto ↗</a>
-          <a class="code" href="https://github.com/Lucash67/lm-mall" target="_blank" rel="noreferrer">Ver código</a>
-        </div>
-      </article>
+    <div class="proj-group reveal">
+      <h3 class="proj-group-title">Sistemas para gestão operacional de um negócio</h3>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://ops-hub-portfolio-demo.vercel.app/login?next=%2F" data-title="Ops Hub">
+            <img class="proj-cover" src="assets/covers/ops-hub.png" alt="Capa do Ops Hub" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">01</span><span class="kind">Operação</span></div>
+            <h3>Ops Hub</h3>
+            <p class="blurb">Centro de gestão multi-operação. Criar operações, acompanhar dados e ter um lugar só para o que antes ficava no feeling.</p>
+            <a class="proj-cta js-open-demo" href="https://ops-hub-portfolio-demo.vercel.app/login?next=%2F" data-title="Ops Hub">Abrir projeto ↗</a>
+          </div>
+        </article>
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://odontology-finance.vercel.app/dashboard" data-title="Odontology Finance">
+            <img class="proj-cover" src="assets/covers/odontology-finance.png" alt="Capa do Odontology Finance" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">02</span><span class="kind">Financeiro</span></div>
+            <h3>Odontology Finance</h3>
+            <p class="blurb">Controle financeiro para consultório odontológico. Pacientes, parcelas, inadimplência e contas a pagar num fluxo de uso diário, não em relatório de fim de mês. A demo pública roda com dados fictícios.</p>
+            <a class="proj-cta js-open-demo" href="https://odontology-finance.vercel.app/dashboard" data-title="Odontology Finance">Abrir projeto ↗</a>
+          </div>
+        </article>
+      </div>
     </div>
 
-    <div class="proj-also reveal">
-      <span class="kind">Também no ar</span>
-      <ul>
-        <li><a href="https://lucash67.github.io/gamboa/" target="_blank" rel="noreferrer">Gamboa do Morro</a></li>
-        <li><a href="https://lucash67.github.io/paradisoicarai/" target="_blank" rel="noreferrer">Paradiso Icaraí</a></li>
-        <li><a href="https://lucash67.github.io/residenciavitoria/" target="_blank" rel="noreferrer">Residência Vittoria</a></li>
-        <li><a href="https://lucash67.github.io/programaindicaseu/" target="_blank" rel="noreferrer">Programa Indica a Seu</a></li>
-      </ul>
+    <div class="proj-group reveal">
+      <h3 class="proj-group-title">Futuro app para treino e dieta</h3>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://evolucaofisica-cursor.vercel.app/login" data-title="FORMA">
+            <img class="proj-cover" src="assets/covers/forma.png" alt="Capa do FORMA" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">03</span><span class="kind">Produto · Saúde</span></div>
+            <h3>FORMA</h3>
+            <p class="blurb">Organização de dieta, treino e acompanhamento pessoal. Rotina costuma morar em três apps e um caderno; quero um lugar só para registrar e comparar ao longo do tempo.</p>
+            <a class="proj-cta js-open-demo" href="https://evolucaofisica-cursor.vercel.app/login" data-title="FORMA">Abrir projeto ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="proj-group reveal">
+      <h3 class="proj-group-title">Sites institucionais</h3>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://terus-platform-web.vercel.app/" data-title="Terus.TEC">
+            <img class="proj-cover" src="assets/covers/terus-platform.png" alt="Capa da Terus.TEC" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">04</span><span class="kind">Institucional</span></div>
+            <h3>Terus.TEC</h3>
+            <p class="blurb">Site institucional da plataforma: inteligência operacional para a cadeia de suprimentos, com caminho claro até a demonstração.</p>
+            <a class="proj-cta js-open-demo" href="https://terus-platform-web.vercel.app/" data-title="Terus.TEC">Abrir projeto ↗</a>
+          </div>
+        </article>
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://champions-idiomas.vercel.app/" data-title="Champions Idiomas">
+            <img class="proj-cover" src="assets/covers/champions-idiomas.png" alt="Capa da Champions Idiomas" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">05</span><span class="kind">Institucional</span></div>
+            <h3>Champions Idiomas</h3>
+            <p class="blurb">Presença institucional de uma escola de inglês. Cursos, metodologia e o agendamento da aula experimental na frente.</p>
+            <a class="proj-cta js-open-demo" href="https://champions-idiomas.vercel.app/" data-title="Champions Idiomas">Abrir projeto ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="proj-group reveal">
+      <h3 class="proj-group-title">Landing pages de alta conversão</h3>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://malu-nutri.vercel.app/" data-title="Malu Nutri">
+            <img class="proj-cover" src="assets/covers/malu-nutri.png" alt="Capa da Malu Nutri" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">06</span><span class="kind">Conversão</span></div>
+            <h3>Malu Nutri</h3>
+            <p class="blurb">Página de acompanhamento nutricional para uma profissional. Identidade, apresentação do serviço e um único próximo passo sempre visível — serviço contínuo se sustenta em confiança, não em cartão de visita.</p>
+            <a class="proj-cta js-open-demo" href="https://malu-nutri.vercel.app/" data-title="Malu Nutri">Abrir projeto ↗</a>
+          </div>
+        </article>
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://terusfarm.vercel.app/" data-title="Terus Farm">
+            <img class="proj-cover" src="assets/covers/terus-farm.png" alt="Capa do Terus Farm" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">07</span><span class="kind">Conversão</span></div>
+            <h3>Terus Farm</h3>
+            <p class="blurb">Landing da plataforma de inteligência para carcinicultura. Produção, viveiros, custos e decisão numa oferta só.</p>
+            <a class="proj-cta js-open-demo" href="https://terusfarm.vercel.app/" data-title="Terus Farm">Abrir projeto ↗</a>
+          </div>
+        </article>
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://arthurnutrilp.vercel.app/" data-title="Arthur Anadon">
+            <img class="proj-cover" src="assets/covers/arthur-anadon.png" alt="Capa da landing Arthur Anadon" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">08</span><span class="kind">Conversão</span></div>
+            <h3>Arthur Anadon</h3>
+            <p class="blurb">Landing de acompanhamento nutricional. Resultado sem extremo, e um único próximo passo visível.</p>
+            <a class="proj-cta js-open-demo" href="https://arthurnutrilp.vercel.app/" data-title="Arthur Anadon">Abrir projeto ↗</a>
+          </div>
+        </article>
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://lpsamuel.vercel.app/" data-title="Grupo Atlas">
+            <img class="proj-cover" src="assets/covers/grupo-atlas.png" alt="Capa da landing Grupo Atlas" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">09</span><span class="kind">Conversão</span></div>
+            <h3>Grupo Atlas</h3>
+            <p class="blurb">Landing para o consultor: carros, motos e imóveis com atendimento direto. O próximo passo é o WhatsApp.</p>
+            <a class="proj-cta js-open-demo" href="https://lpsamuel.vercel.app/" data-title="Grupo Atlas">Abrir projeto ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="proj-group reveal">
+      <h3 class="proj-group-title">Landing pages para imobiliárias</h3>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall">
+            <img class="proj-cover" src="assets/covers/lm-mall.jpg" alt="Capa do LM Office &amp; Mall" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">10</span><span class="kind">Imobiliário</span></div>
+            <h3>LM Office &amp; Mall</h3>
+            <p class="blurb">Empreendimento comercial apresentado para dois públicos ao mesmo tempo — quem compra para usar e quem compra para investir.</p>
+            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall">Abrir projeto ↗</a>
+          </div>
+        </article>
+        <article class="proj-card">
+          <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence">
+            <img class="proj-cover" src="assets/covers/makani.jpg" alt="Capa do Makani Beach Residence" width="1280" height="800" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-index">11</span><span class="kind">Imobiliário</span></div>
+            <h3>Makani Beach Residence</h3>
+            <p class="blurb">Landing de um empreendimento à beira-mar. Página longa e visual, com plantas, localização e um objetivo só: a próxima mensagem.</p>
+            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence">Abrir projeto ↗</a>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="proj-viewer" id="projViewer" hidden>
+  <div class="proj-viewer-bar">
+    <strong id="projViewerTitle">Projeto</strong>
+    <a class="btn btn-secondary" id="projViewerExt" href="#" target="_blank" rel="noreferrer">Abrir em nova aba ↗</a>
+    <button type="button" class="btn btn-primary" id="projViewerClose">Fechar</button>
+  </div>
+  <div class="proj-viewer-frame">
+    <iframe id="projViewerFrame" title="Prévia do projeto" referrerpolicy="no-referrer"></iframe>
+  </div>
+</div>
 
 <section class="cta-section" id="contato">
   <div class="wrap">
@@ -561,6 +614,53 @@
       }, {threshold:.08});
       for(var i=0;i<els.length;i++){ obs.observe(els[i]); }
     }
+  }catch(err){}
+
+  try{
+    var viewer = document.getElementById('projViewer');
+    var frame = document.getElementById('projViewerFrame');
+    var titleEl = document.getElementById('projViewerTitle');
+    var ext = document.getElementById('projViewerExt');
+    var closeBtn = document.getElementById('projViewerClose');
+    if(!viewer || !frame) return;
+
+    var closeViewer = function(){
+      viewer.classList.remove('open');
+      viewer.hidden = true;
+      document.body.classList.remove('viewer-open');
+      frame.src = 'about:blank';
+    };
+
+    var openViewer = function(url, title){
+      var narrow = window.matchMedia && window.matchMedia('(max-width: 720px)').matches;
+      if(narrow){
+        window.open(url, '_blank', 'noopener');
+        return;
+      }
+      titleEl.textContent = title || 'Projeto';
+      ext.href = url;
+      frame.src = url;
+      viewer.hidden = false;
+      viewer.classList.add('open');
+      document.body.classList.add('viewer-open');
+    };
+
+    document.addEventListener('click', function(e){
+      var link = e.target.closest && e.target.closest('.js-open-demo');
+      if(!link) return;
+      var url = link.getAttribute('href');
+      if(!url) return;
+      e.preventDefault();
+      openViewer(url, link.getAttribute('data-title'));
+    });
+
+    closeBtn.addEventListener('click', closeViewer);
+    viewer.addEventListener('click', function(e){
+      if(e.target === viewer) closeViewer();
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && viewer.classList.contains('open')) closeViewer();
+    });
   }catch(err){}
 })();
 </script>
