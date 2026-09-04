@@ -7,7 +7,7 @@
 <title>Lucas Henrique — Estratégia, Design & Tecnologia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#07090d;
@@ -23,6 +23,7 @@
     --green:#8fffc1;
     --max:1180px;
     --radius:28px;
+    --display:Syne, ui-sans-serif, sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -132,12 +133,36 @@
   .usecase h3{font-size:24px;letter-spacing:-.035em;margin:0 0 10px}
   .usecase p{color:var(--muted);font-size:14px;margin:0}
 
-  .proj-group{margin-top:52px}
-  .proj-group:first-of-type{margin-top:0}
+  #projetos{counter-reset:tipo}
+  .proj-group{
+    counter-increment: tipo;
+  }
+  .proj-group + .proj-group{
+    margin-top:72px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+  }
   .proj-group-title{
-    font-size:13px;color:var(--cyan);font-weight:800;
-    text-transform:uppercase;letter-spacing:.14em;
-    margin:0 0 16px;
+    font-family:var(--display);
+    font-size:clamp(30px,5.2vw,56px);
+    font-weight:800;
+    line-height:1.02;
+    letter-spacing:-.05em;
+    color:var(--text);
+    text-transform:none;
+    margin:0 0 28px;
+    max-width:14ch;
+  }
+  .proj-group-title:before{
+    content:"Tipo " counter(tipo, decimal-leading-zero);
+    display:block;
+    font-family:Inter, ui-sans-serif, sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:12px;
   }
   .proj-grid{display:grid;gap:16px}
   .proj-card{
@@ -595,7 +620,7 @@
       <p>A primeira conversa serve para entender objetivo, urgência, público e contexto. A partir disso, consigo indicar o melhor formato de projeto e os próximos passos — sem complicar o processo.</p>
       <div class="cta-actions">
         <a href="mailto:lucashcampos67@gmail.com" class="btn btn-primary">Vamos conversar</a>
-        <a href="https://wa.me/558599650583?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-secondary" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+        <a href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-secondary" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
       </div>
     </div>
   </div>
