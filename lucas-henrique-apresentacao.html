@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="Apresentação profissional de Lucas Henrique - estratégia, design e tecnologia para criar experiências digitais que funcionam de verdade." />
 <title>Lucas Henrique — Estratégia, Design & Tecnologia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
     --ease:cubic-bezier(.22,1,.36,1);
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth;color-scheme:dark}
+  html{scroll-behavior:smooth;color-scheme:dark;-webkit-text-size-adjust:100%}
   body{
     margin:0;
     color:var(--text);
@@ -41,11 +41,13 @@
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
   }
   a{color:inherit;text-decoration:none}
   .noise{position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:100;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E")}
   .wrap{width:min(calc(100% - 40px),var(--max));margin:0 auto}
-  .nav{position:sticky;top:0;z-index:50;background:rgba(7,9,13,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:background .35s var(--ease), box-shadow .35s var(--ease)}
+  .nav{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(7,9,13,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:background .35s var(--ease), box-shadow .35s var(--ease)}
   .nav:before{
     content:"";position:absolute;left:0;bottom:-1px;height:1px;
     width:calc(var(--scroll, 0) * 100%);
@@ -55,7 +57,7 @@
   .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
   .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em}
   .brand-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--cyan),var(--blue) 55%,var(--violet));display:grid;place-items:center;box-shadow:0 0 30px rgba(92,124,255,.25);transform-style:preserve-3d;transition:transform .55s var(--ease)}
-  .brand:hover .brand-mark{transform:rotateY(180deg)}
+  .brand:hover .brand-mark,.brand:active .brand-mark{transform:rotateY(180deg)}
   .brand-mark:after{content:"LH";font-size:11px;color:#071018;font-weight:900;letter-spacing:-.04em}
   .nav-links{display:flex;gap:24px;color:var(--muted);font-size:14px}
   .nav-links a{position:relative;transition:color .25s var(--ease)}
@@ -69,6 +71,29 @@
   .nav-cta{padding:10px 16px;border-radius:999px;border:1px solid rgba(102,228,255,.22);background:rgba(102,228,255,.08);font-size:14px;font-weight:700;transition:transform .35s var(--ease), background .25s var(--ease)}
   .nav-cta:hover{transform:translateY(-2px);background:rgba(102,228,255,.14)}
   .nav.scrolled{background:rgba(7,9,13,.9);box-shadow:0 12px 40px rgba(0,0,0,.28)}
+  .nav-toggle{
+    display:none;width:44px;height:44px;padding:0;border:1px solid var(--line);border-radius:12px;
+    background:rgba(255,255,255,.04);align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;
+  }
+  .nav-toggle span{display:block;width:16px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .4s var(--ease), opacity .3s var(--ease)}
+  .nav-toggle[aria-expanded="true"] span:first-child{transform:translateY(3.25px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+  .mobile-nav{
+    position:fixed;inset:0;z-index:45;display:none;align-items:stretch;
+    padding:calc(88px + env(safe-area-inset-top,0px)) 0 env(safe-area-inset-bottom,24px);
+    background:rgba(7,9,13,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+    perspective:1200px;overscroll-behavior:contain;
+  }
+  .mobile-nav[hidden]{display:none !important}
+  .mobile-nav.open{display:flex;animation:menu-in .45s var(--ease)}
+  .mobile-nav-inner{display:flex;flex-direction:column;justify-content:center;gap:6px;width:min(calc(100% - 40px),var(--max));margin:0 auto;transform-style:preserve-3d}
+  .mobile-nav-inner a{
+    font-size:clamp(28px,8vw,44px);font-weight:800;letter-spacing:-.045em;line-height:1.1;
+    padding:10px 0;transform:translateZ(24px);
+  }
+  .mobile-nav-inner .btn{margin-top:22px;width:fit-content;font-size:16px}
+  @keyframes menu-in{from{opacity:0;transform:translateY(16px) rotateX(8deg)}to{opacity:1;transform:none}}
+  body.menu-open{overflow:hidden}
 
   .hero{min-height:calc(100vh - 72px);display:grid;align-items:center;padding:80px 0 72px;position:relative}
   .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
@@ -85,8 +110,9 @@
   .lead{max-width:700px;font-size:clamp(18px,2.2vw,25px);line-height:1.45;color:#bec8d3;letter-spacing:-.02em}
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;font-weight:800;font-size:15px;border:1px solid var(--line);position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease), background .25s var(--ease), border-color .25s var(--ease)}
-  .btn:hover{transform:translateY(-3px)}
+  .btn:hover,.btn:active{transform:translateY(-3px)}
   .btn:active{transform:translateY(0) scale(.98)}
+  .btn-primary:active:after{transform:translateX(130%)}
   .btn-primary{background:var(--text);color:#07090d;border-color:transparent}
   .btn-primary:after{
     content:"";position:absolute;inset:0;z-index:-1;
@@ -164,7 +190,7 @@
   .glass-card h3{font-size:31px;line-height:1.02;letter-spacing:-.045em;margin:0 0 20px}
   .service-chips{display:flex;flex-wrap:wrap;gap:8px}
   .chip{padding:9px 11px;border:1px solid var(--line);border-radius:11px;color:#c5ced8;background:rgba(255,255,255,.035);font-size:13px;transition:transform .35s var(--ease), border-color .25s var(--ease)}
-  .chip:hover{transform:translateY(-2px) translateZ(8px);border-color:rgba(255,255,255,.18)}
+  .chip:hover,.chip:active{transform:translateY(-2px) translateZ(8px);border-color:rgba(255,255,255,.18)}
   .js-ready .chip{animation:chip-in .6s var(--ease) both}
   .js-ready .chip:nth-child(1){animation-delay:.15s}
   .js-ready .chip:nth-child(2){animation-delay:.22s}
@@ -206,14 +232,19 @@
   .deliver{border:1px solid var(--line);border-radius:20px;padding:22px;background:rgba(255,255,255,.022);transition:transform .45s var(--ease), border-color .3s var(--ease)}
   .usecase{padding:28px;border:1px solid var(--line);border-radius:24px;background:#0b1017;transition:transform .5s var(--ease), border-color .3s var(--ease)}
   .statement,.question-box,.method{transition:transform .5s var(--ease), border-color .3s var(--ease)}
+  .grid-3,.timeline,.deliver-grid,.method-grid,.usecases,.proj-grid,.principles,.problem-list,.split{perspective:1100px}
   @media (hover:hover) and (pointer:fine){
     .card:hover,.principle:hover,.problem:hover,.step:hover,.deliver:hover,.usecase:hover,.statement:hover,.question-box:hover{
       transform:translateY(-6px) rotateX(4deg) rotateY(-4deg);
       border-color:rgba(255,255,255,.18);
     }
     .method:hover{transform:translateY(-4px) rotateX(2deg)}
-    .grid-3,.timeline,.deliver-grid,.method-grid,.usecases,.proj-grid,.principles,.problem-list,.split{perspective:1100px}
   }
+  .card:active,.principle:active,.problem:active,.step:active,.deliver:active,.usecase:active,.statement:active,.question-box:active{
+    transform:translateY(-6px) rotateX(4deg) rotateY(-4deg);
+    border-color:rgba(255,255,255,.18);
+  }
+  .method:active{transform:translateY(-4px) rotateX(2deg)}
   .principle .index{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(102,228,255,.08);border:1px solid rgba(102,228,255,.14);font-weight:800;color:var(--cyan)}
   .principle h4{font-size:18px;margin:0 0 5px;letter-spacing:-.025em}
   .principle p{margin:0;color:var(--muted);font-size:14px}
@@ -309,6 +340,11 @@
     }
     .proj-card:hover .proj-cover{transform:scale(1.03)}
   }
+  .proj-card:active{
+    transform:translateY(-8px) rotateX(5deg) rotateY(-6deg);
+    border-color:rgba(255,255,255,.18);
+  }
+  .proj-card:active .proj-cover{transform:scale(1.03)}
   .proj-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
   .proj-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
   .proj-index{font-size:12px;color:#7f8b98;letter-spacing:.12em;text-transform:uppercase}
@@ -316,14 +352,14 @@
   .proj-card h3{font-size:24px;letter-spacing:-.04em;margin:12px 0 8px;line-height:1.12}
   .proj-card .blurb{color:var(--muted);font-size:15px;flex:1;margin:0}
   .proj-cta{margin-top:16px;font-size:14px;font-weight:800;transition:color .25s var(--ease), transform .35s var(--ease)}
-  .proj-cta:hover{color:var(--cyan);transform:translateX(4px)}
+  .proj-cta:hover,.proj-cta:active{color:var(--cyan);transform:translateX(4px)}
   @media(min-width:760px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
 
   .proj-viewer{
     position:fixed;inset:0;z-index:200;
     display:none;flex-direction:column;
     background:rgba(7,9,13,.94);
-    padding:16px;
+    padding:max(12px, env(safe-area-inset-top, 12px)) 12px max(12px, env(safe-area-inset-bottom, 12px));
   }
   .proj-viewer[hidden]{display:none !important}
   .proj-viewer.open{display:flex;animation:viewer-in .38s var(--ease)}
@@ -371,42 +407,59 @@
   .paused .cube-3d,.paused .orb,.paused .plane-3d,.paused .ring-3d,.paused h1 .grad{animation-play-state:paused}
   @media(max-width:900px){
     .nav-links{display:none}
+    .nav-toggle{display:flex}
     .hero{padding-top:54px}
     .hero-grid,.section-head,.split,.problem-grid{grid-template-columns:1fr}
-    .hero-panel{min-height:380px}
-    .orb{width:300px;height:300px}
-    .cube-3d,.plane-3d,.ring-3d{display:none}
-    .glass-card{transform:none}
+    .hero-panel,.stage-3d{min-height:440px;perspective:900px}
+    .orb{width:280px;height:280px}
+    .cube-3d{width:64px;height:64px;right:3%;top:8%}
+    .cube-3d i:nth-child(1){transform:translateZ(32px)}
+    .cube-3d i:nth-child(2){transform:rotateY(90deg) translateZ(32px)}
+    .cube-3d i:nth-child(3){transform:rotateY(180deg) translateZ(32px)}
+    .cube-3d i:nth-child(4){transform:rotateY(-90deg) translateZ(32px)}
+    .cube-3d i:nth-child(5){transform:rotateX(90deg) translateZ(32px)}
+    .cube-3d i:nth-child(6){transform:rotateX(-90deg) translateZ(32px)}
+    .plane-a{width:86px;height:52px;left:0;top:14%}
+    .plane-b{width:62px;height:84px;right:0;bottom:12%}
+    .ring-3d{width:120px;height:120px;left:-6%;bottom:8%}
+    .ring-3d.sm{width:68px;height:68px;right:8%;top:6%}
+    .glass-card{transform:rotateY(-8deg) rotateX(6deg) rotateZ(1deg);width:min(100%,400px)}
     .grid-3,.timeline,.usecases{grid-template-columns:1fr}
     .timeline .step{min-height:auto}
     .deliver-grid,.method-grid{grid-template-columns:1fr}
     section{padding:84px 0}
     .section-head{gap:16px}
     .kicker{padding-top:0}
+    .btn{min-height:48px}
+    .proj-cta{min-height:44px;display:inline-flex;align-items:center}
+    h1{font-size:clamp(40px,11vw,64px)}
   }
   @media(max-width:560px){
     .wrap{width:min(calc(100% - 24px),var(--max))}
     .nav-inner{height:64px}
     .nav-cta{display:none}
-    .hero{min-height:auto;padding:56px 0 72px}
-    h1{font-size:54px}
+    .hero{min-height:auto;padding:48px 0 56px}
     .lead{font-size:18px}
-    .hero-panel{min-height:330px;margin-top:10px}
+    .hero-panel,.stage-3d{min-height:400px;margin-top:6px}
     .glass-card{padding:22px;border-radius:24px}
+    .glass-card h3{font-size:26px}
     .metric-row{grid-template-columns:1fr}
     section{padding:70px 0}
     .card,.statement,.question-box,.method,.cta-box{padding:24px}
     .proj-body{padding:20px}
     .cta-section{padding:80px 0}
     .footer-inner{align-items:flex-start;flex-direction:column}
+    .proj-viewer-bar{gap:8px}
+    .proj-viewer-bar .btn{flex:1;justify-content:center}
+    .mobile-nav-inner{width:min(calc(100% - 24px),var(--max))}
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
-    .orb,.cube-3d,.plane-3d,.ring-3d,h1 .grad,.js-ready .chip{animation:none}
+    .orb,.cube-3d,.plane-3d,.ring-3d,h1 .grad,.js-ready .chip,.mobile-nav.open{animation:none}
     .cube-3d,.plane-3d,.ring-3d{display:none}
-    .glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.proj-cta:hover,.brand:hover .brand-mark,.cta-box{transform:none !important}
-    .card:hover,.principle:hover,.problem:hover,.step:hover,.deliver:hover,.usecase:hover,.statement:hover,.question-box:hover,.method:hover,.proj-card:hover{transform:none}
-    .proj-card:hover .proj-cover{transform:none}
+    .glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.proj-cta:hover,.brand:hover .brand-mark,.brand:active .brand-mark,.cta-box{transform:none !important}
+    .card:hover,.card:active,.principle:hover,.principle:active,.problem:hover,.problem:active,.step:hover,.step:active,.deliver:hover,.deliver:active,.usecase:hover,.usecase:active,.statement:hover,.statement:active,.question-box:hover,.question-box:active,.method:hover,.method:active,.proj-card:hover,.proj-card:active{transform:none}
+    .proj-card:hover .proj-cover,.proj-card:active .proj-cover{transform:none}
     .btn-primary:after{display:none}
     .js-ready .reveal{opacity:1;transform:none;transition:none}
     .proj-viewer.open,.proj-viewer.open .proj-viewer-frame{animation:none}
@@ -422,8 +475,21 @@
       <a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#processo">Processo</a><a href="#projetos">Projetos</a><a href="#entrega">Entrega</a>
     </div>
     <a class="nav-cta" href="#contato">Começar um projeto ↗</a>
+    <button type="button" class="nav-toggle" aria-label="Abrir menu" aria-controls="mobileNav" aria-expanded="false">
+      <span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="mobile-nav" id="mobileNav" hidden>
+  <div class="wrap mobile-nav-inner">
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Processo</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#entrega">Entrega</a>
+    <a href="#contato" class="btn btn-primary">Começar um projeto ↗</a>
+  </div>
+</div>
 
 <main>
 <section class="hero" id="inicio">
@@ -837,24 +903,45 @@
   }catch(err){}
 
   try{
-    if(!reduce && fine){
+    if(!reduce){
       var panel = document.querySelector('.hero-panel');
       var stage = document.querySelector('.stage-3d');
       var glass = document.querySelector('.glass-card');
       var cta = document.querySelector('.cta-box');
       var tx = 0, ty = 0, cx = 0, cy = 0, running = false;
       var ctx = 0, cty = 0, ccx = 0, ccy = 0;
+      var gyroX = 0, gyroY = 0, hasGyro = false, touching = false;
+      var heroIn = true, ctaIn = false;
+      var always = !fine;
 
       var loop = function(){
-        cx += (tx - cx) * 0.08;
-        cy += (ty - cy) * 0.08;
-        ccx += (ctx - ccx) * 0.08;
-        ccy += (cty - ccy) * 0.08;
+        var t = performance.now();
+        var ix = 0, iy = 0, cix = 0, ciy = 0;
+        if(always && !hasGyro && !touching){
+          ix = Math.sin(t / 1800) * 0.55;
+          iy = Math.cos(t / 2200) * 0.34;
+          cix = Math.sin(t / 2400) * 0.32;
+          ciy = Math.cos(t / 2600) * 0.2;
+        }
+        if(always && heroIn && panel){
+          var pr = panel.getBoundingClientRect();
+          var mid = (pr.top + pr.height / 2 - window.innerHeight / 2) / window.innerHeight;
+          iy += Math.max(-0.35, Math.min(0.35, mid));
+        }
+        var hx = touching ? tx : (hasGyro ? gyroX : (Math.abs(tx) > 0.04 ? tx : ix));
+        var hy = touching ? ty : (hasGyro ? gyroY : (Math.abs(ty) > 0.04 ? ty : iy));
+        var chx = touching ? ctx : (hasGyro ? gyroX * 0.7 : (Math.abs(ctx) > 0.04 ? ctx : cix));
+        var chy = touching ? cty : (hasGyro ? gyroY * 0.7 : (Math.abs(cty) > 0.04 ? cty : ciy));
+        cx += (hx - cx) * 0.08;
+        cy += (hy - cy) * 0.08;
+        ccx += (chx - ccx) * 0.08;
+        ccy += (chy - ccy) * 0.08;
         if(stage) stage.style.transform = 'rotateX(' + (-cy * 7).toFixed(3) + 'deg) rotateY(' + (cx * 9).toFixed(3) + 'deg)';
         if(glass) glass.style.transform = 'rotateY(' + (-10 + cx * 12).toFixed(3) + 'deg) rotateX(' + (8 - cy * 10).toFixed(3) + 'deg) rotateZ(2deg)';
         if(cta) cta.style.transform = 'rotateX(' + (-ccy * 5).toFixed(3) + 'deg) rotateY(' + (ccx * 6).toFixed(3) + 'deg)';
-        var moving = Math.abs(tx-cx) > 0.002 || Math.abs(ty-cy) > 0.002 || Math.abs(ctx-ccx) > 0.002 || Math.abs(cty-ccy) > 0.002;
-        if(moving) requestAnimationFrame(loop);
+        var moving = Math.abs(hx-cx) > 0.002 || Math.abs(hy-cy) > 0.002 || Math.abs(chx-ccx) > 0.002 || Math.abs(chy-ccy) > 0.002;
+        if(always && (heroIn || ctaIn || touching || hasGyro)) requestAnimationFrame(loop);
+        else if(moving) requestAnimationFrame(loop);
         else running = false;
       };
       var kick = function(){
@@ -862,6 +949,15 @@
       };
       var bindTilt = function(el, setX, setY){
         if(!el) return;
+        el.addEventListener('pointerdown', function(e){
+          touching = true;
+          var r = el.getBoundingClientRect();
+          if(r.width && r.height){
+            setX(((e.clientX - r.left) / r.width - 0.5) * 2);
+            setY(((e.clientY - r.top) / r.height - 0.5) * 2);
+          }
+          kick();
+        });
         el.addEventListener('pointermove', function(e){
           var r = el.getBoundingClientRect();
           if(!r.width || !r.height) return;
@@ -869,12 +965,83 @@
           setY(((e.clientY - r.top) / r.height - 0.5) * 2);
           kick();
         }, {passive:true});
-        el.addEventListener('pointerleave', function(){
-          setX(0); setY(0); kick();
-        });
+        el.addEventListener('pointerup', function(){ touching = false; setX(0); setY(0); kick(); });
+        el.addEventListener('pointercancel', function(){ touching = false; setX(0); setY(0); kick(); });
+        el.addEventListener('pointerleave', function(){ touching = false; setX(0); setY(0); kick(); });
       };
       bindTilt(panel, function(v){ tx = v; }, function(v){ ty = v; });
       bindTilt(cta, function(v){ ctx = v; }, function(v){ cty = v; });
+
+      var attachGyro = function(){
+        window.addEventListener('deviceorientation', function(e){
+          hasGyro = true;
+          gyroX = Math.max(-1, Math.min(1, (e.gamma || 0) / 30));
+          gyroY = Math.max(-1, Math.min(1, ((e.beta || 0) - 45) / 35));
+          kick();
+        }, {passive:true});
+      };
+      if(window.DeviceOrientationEvent){
+        if(typeof DeviceOrientationEvent.requestPermission === 'function'){
+          var asked = false;
+          var askGyro = function(){
+            if(asked) return;
+            asked = true;
+            DeviceOrientationEvent.requestPermission().then(function(state){
+              if(state === 'granted') attachGyro();
+            }).catch(function(){});
+          };
+          if(panel) panel.addEventListener('pointerdown', askGyro, {passive:true});
+        } else {
+          attachGyro();
+        }
+      }
+
+      if(always && 'IntersectionObserver' in window){
+        var vis = new IntersectionObserver(function(entries){
+          for(var i=0;i<entries.length;i++){
+            if(entries[i].target === panel) heroIn = entries[i].isIntersecting;
+            if(entries[i].target === cta) ctaIn = entries[i].isIntersecting;
+          }
+          kick();
+        }, {threshold:0.08});
+        if(panel) vis.observe(panel);
+        if(cta) vis.observe(cta);
+      }
+      kick();
+    }
+  }catch(err){}
+
+  try{
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('mobileNav');
+    if(toggle && menu){
+      var closeMenu = function(){
+        menu.classList.remove('open');
+        menu.hidden = true;
+        document.body.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu');
+      };
+      var openMenu = function(){
+        menu.hidden = false;
+        menu.classList.add('open');
+        document.body.classList.add('menu-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Fechar menu');
+      };
+      toggle.addEventListener('click', function(){
+        if(menu.classList.contains('open')) closeMenu();
+        else openMenu();
+      });
+      menu.addEventListener('click', function(e){
+        if(e.target.closest && e.target.closest('a')) closeMenu();
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+      });
+      window.addEventListener('resize', function(){
+        if(window.innerWidth > 900 && menu.classList.contains('open')) closeMenu();
+      });
     }
   }catch(err){}
 
@@ -892,11 +1059,6 @@
         frame.src = 'about:blank';
       };
       var openViewer = function(url, title){
-        var narrow = window.matchMedia && window.matchMedia('(max-width: 720px)').matches;
-        if(narrow){
-          window.open(url, '_blank', 'noopener');
-          return;
-        }
         titleEl.textContent = title || 'Projeto';
         ext.href = url;
         frame.src = url;
