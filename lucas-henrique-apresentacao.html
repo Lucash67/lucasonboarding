@@ -289,15 +289,15 @@
     border-top:1px solid var(--line);
   }
   .proj-group-title{
-    font-family:var(--display);
-    font-size:clamp(30px,5.2vw,56px);
+    font-family:Inter, ui-sans-serif, sans-serif;
+    font-size:clamp(20px,2.6vw,28px);
     font-weight:800;
-    line-height:1.02;
-    letter-spacing:-.05em;
+    line-height:1.15;
+    letter-spacing:-.02em;
     color:var(--text);
     text-transform:none;
-    margin:0 0 28px;
-    max-width:14ch;
+    margin:0 0 22px;
+    max-width:none;
   }
   .proj-group-title:before{
     content:"Tipo " counter(tipo, decimal-leading-zero);
@@ -351,7 +351,7 @@
   .proj-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
   .proj-index{font-size:12px;color:#7f8b98;letter-spacing:.12em;text-transform:uppercase}
   .kind{font-size:12px;color:var(--cyan);font-weight:800;letter-spacing:.04em}
-  .proj-card h3{font-size:24px;letter-spacing:-.04em;margin:12px 0 8px;line-height:1.12}
+  .proj-card h3{font-family:Inter, ui-sans-serif, sans-serif;font-size:18px;font-weight:800;letter-spacing:-.02em;margin:10px 0 6px;line-height:1.2}
   .proj-card .blurb{color:var(--muted);font-size:15px;flex:1;margin:0}
   .proj-cta{margin-top:16px;font-size:14px;font-weight:800;transition:color .25s var(--ease), transform .35s var(--ease)}
   .proj-cta:hover,.proj-cta:active{color:var(--cyan);transform:translateX(4px)}
