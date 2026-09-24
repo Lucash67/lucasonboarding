@@ -3,8 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="description" content="Landing pages e sites institucionais de alta conversão, que qualificam os leads antes de chegarem até você. Lucas Henrique." />
+<meta name="description" id="metaDesc" content="Landing pages e sites institucionais de alta conversão, que qualificam os leads antes de chegarem até você. Lucas Henrique." />
 <title>Lucas Henrique — Landing pages e sites institucionais</title>
+<script>
+(function(){
+  try{
+    var l = localStorage.getItem('lh-lang');
+    if(!l){
+      var n = (navigator.language || '').toLowerCase();
+      if(n.indexOf('es') === 0) l = 'es';
+      else if(n.indexOf('en') === 0) l = 'en';
+    }
+    if(l === 'en' || l === 'es'){
+      document.documentElement.lang = l;
+      document.documentElement.classList.add('i18n-pending');
+    }
+  }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Syne:wght@800&display=swap" rel="stylesheet">
@@ -68,8 +84,22 @@
   }
   .nav-links a:hover{color:var(--text)}
   .nav-links a:hover:after{transform:scaleX(1)}
+  .nav-tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+  .lang-toggle{
+    display:inline-flex;align-items:center;gap:8px;
+    height:40px;padding:0 14px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(255,255,255,.04);
+    color:var(--text);font:inherit;font-size:13px;font-weight:800;
+    letter-spacing:-.02em;cursor:pointer;flex-shrink:0;white-space:nowrap;
+    transition:transform .35s var(--ease), background .25s var(--ease);
+  }
+  .lang-toggle:hover,.lang-toggle:focus-visible{transform:translateY(-2px);background:rgba(255,255,255,.08)}
+  .lang-toggle:focus-visible{outline:2px solid rgba(102,228,255,.45);outline-offset:2px}
+  .lang-code{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);font-weight:800}
+  .lang-name{font-size:13px;font-weight:800}
   .nav-cta{padding:10px 16px;border-radius:999px;border:1px solid rgba(102,228,255,.22);background:rgba(102,228,255,.08);font-size:14px;font-weight:700;transition:transform .35s var(--ease), background .25s var(--ease)}
   .nav-cta:hover{transform:translateY(-2px);background:rgba(102,228,255,.14)}
+  html.i18n-pending body{visibility:hidden}
   .nav.scrolled{background:rgba(7,9,13,.9);box-shadow:0 12px 40px rgba(0,0,0,.28)}
   .nav-toggle{
     display:none;width:44px;height:44px;padding:0;border:1px solid var(--line);border-radius:12px;
@@ -300,7 +330,7 @@
     max-width:none;
   }
   .proj-group-title:before{
-    content:"Tipo " counter(tipo, decimal-leading-zero);
+    content:var(--tipo-word, "Tipo ") counter(tipo, decimal-leading-zero);
     display:block;
     font-family:Inter, ui-sans-serif, sans-serif;
     font-size:12px;
@@ -408,6 +438,7 @@
   @media(max-width:900px){
     .nav-links{display:none}
     .nav-toggle{display:flex}
+    .lang-name{display:none}
     .hero{padding-top:54px}
     .hero-grid,.section-head,.split,.problem-grid{grid-template-columns:1fr}
     .hero-panel,.stage-3d{min-height:440px;perspective:900px}
@@ -439,6 +470,8 @@
     .wrap{width:min(calc(100% - 24px),var(--max))}
     .nav-inner{height:64px}
     .nav-cta{display:none}
+    .lang-name{display:none}
+    .lang-toggle{padding:0 12px;height:36px}
     .hero{min-height:auto;padding:48px 0 56px}
     .lead{font-size:18px}
     .hero-panel,.stage-3d{min-height:400px;margin-top:6px}
@@ -458,7 +491,7 @@
     html{scroll-behavior:auto}
     .orb,.js-ready .chip,.mobile-nav.open,.glass-track{animation:none}
     .cube-3d,.plane-3d,.ring-3d{display:none}
-    .glass-track,.glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.proj-cta:hover,.brand:hover .brand-mark,.brand:active .brand-mark,.cta-box{transform:none !important}
+    .glass-track,.glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.lang-toggle:hover,.lang-toggle:focus-visible,.proj-cta:hover,.brand:hover .brand-mark,.brand:active .brand-mark,.cta-box{transform:none !important}
     .card:hover,.card:active,.principle:hover,.principle:active,.problem:hover,.problem:active,.step:hover,.step:active,.deliver:hover,.deliver:active,.usecase:hover,.usecase:active,.statement:hover,.statement:active,.question-box:hover,.question-box:active,.method:hover,.method:active,.proj-card:hover,.proj-card:active{transform:none}
     .proj-card:hover .proj-cover,.proj-card:active .proj-cover{transform:none}
     .btn-primary:after{display:none}
@@ -473,20 +506,26 @@
   <div class="wrap nav-inner">
     <a class="brand" href="#inicio"><span class="brand-mark"></span><span>Lucas Henrique</span></a>
     <div class="nav-links">
-      <a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a>
+      <a href="#servicos" data-i18n="navServicos">Serviços</a><a href="#projetos" data-i18n="navProjetos">Projetos</a><a href="#contato" data-i18n="navContato">Contato</a>
     </div>
-    <a class="nav-cta" href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." target="_blank" rel="noreferrer">Falar no WhatsApp ↗</a>
-    <button type="button" class="nav-toggle" aria-label="Abrir menu" aria-controls="mobileNav" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+    <div class="nav-tools">
+      <button type="button" class="lang-toggle" id="langToggle" aria-label="Idioma: português. Clique para english.">
+        <span class="lang-code" id="langCode">PT</span>
+        <span class="lang-name" id="langName">português</span>
+      </button>
+      <a class="nav-cta" data-wa data-i18n="navWhatsapp" href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." target="_blank" rel="noreferrer">Falar no WhatsApp ↗</a>
+      <button type="button" class="nav-toggle" aria-label="Abrir menu" aria-controls="mobileNav" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav" hidden>
   <div class="wrap mobile-nav-inner">
-    <a href="#servicos">Serviços</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#contato">Contato</a>
-    <a href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noreferrer">Falar no WhatsApp ↗</a>
+    <a href="#servicos" data-i18n="navServicos">Serviços</a>
+    <a href="#projetos" data-i18n="navProjetos">Projetos</a>
+    <a href="#contato" data-i18n="navContato">Contato</a>
+    <a data-wa data-i18n="navWhatsapp" href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noreferrer">Falar no WhatsApp ↗</a>
   </div>
 </div>
 
@@ -494,12 +533,12 @@
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div class="reveal">
-      <span class="eyebrow"><span class="dot"></span> landing pages · sites institucionais</span>
-      <h1>Páginas de <span class="grad">alta conversão</span> — leads mais qualificados, não só mais visitas.</h1>
-      <p class="lead">A página explica, filtra e convence. Quem chega já entendeu o que você faz — e se encaixa.</p>
+      <span class="eyebrow"><span class="dot"></span> <span data-i18n="heroEyebrow">landing pages · sites institucionais</span></span>
+      <h1 data-i18n-html="heroH1">Páginas de <span class="grad">alta conversão</span> — leads mais qualificados, não só mais visitas.</h1>
+      <p class="lead" data-i18n="heroLead">A página explica, filtra e convence. Quem chega já entendeu o que você faz — e se encaixa.</p>
       <div class="hero-actions">
-        <a href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
-        <a href="#projetos" class="btn btn-secondary">Ver cases ↓</a>
+        <a data-wa data-i18n="heroWhatsapp" href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+        <a href="#projetos" class="btn btn-secondary" data-i18n="heroCases">Ver cases ↓</a>
       </div>
     </div>
     <div class="hero-panel reveal">
@@ -512,14 +551,14 @@
         <div class="orb"></div>
         <div class="glass-track">
         <div class="glass-card">
-          <div class="glass-top"><span class="mini-label">Meu foco</span><span class="status">● alta conversão</span></div>
-          <h3>Uma oferta clara. Um caminho. Leads que chegam prontos.</h3>
+          <div class="glass-top"><span class="mini-label" data-i18n="glassFocus">Meu foco</span><span class="status" data-i18n="glassStatus">● alta conversão</span></div>
+          <h3 data-i18n="glassH3">Uma oferta clara. Um caminho. Leads que chegam prontos.</h3>
           <div class="service-chips">
-            <span class="chip">Landing Pages</span><span class="chip">Sites Institucionais</span><span class="chip">Alta conversão</span><span class="chip">Qualificação</span>
+            <span class="chip" data-i18n="chipLp">Landing Pages</span><span class="chip" data-i18n="chipInst">Sites Institucionais</span><span class="chip" data-i18n="chipConv">Alta conversão</span><span class="chip" data-i18n="chipQual">Qualificação</span>
           </div>
           <div class="metric-row">
-            <div class="metric"><strong>01</strong><span>alta conversão</span></div>
-            <div class="metric"><strong>QL</strong><span>leads mais qualificados</span></div>
+            <div class="metric"><strong>01</strong><span data-i18n="metricConv">alta conversão</span></div>
+            <div class="metric"><strong>QL</strong><span data-i18n="metricQual">leads mais qualificados</span></div>
           </div>
         </div>
         </div>
@@ -531,16 +570,16 @@
 <section id="servicos">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">01 · O que eu faço</div>
+      <div class="kicker" data-i18n="servKicker">01 · O que eu faço</div>
       <div>
-        <h2>Landing pages e sites institucionais feitos para converter.</h2>
-        <p class="section-copy">Estratégia, copy, visual e publicação. Quem chega já entendeu a oferta — e já se filtrou.</p>
+        <h2 data-i18n="servH2">Landing pages e sites institucionais feitos para converter.</h2>
+        <p class="section-copy" data-i18n="servCopy">Estratégia, copy, visual e publicação. Quem chega já entendeu a oferta — e já se filtrou.</p>
       </div>
     </div>
     <div class="grid-3">
-      <article class="card reveal"><span class="num">01</span><h3>Landing pages</h3><p>Uma oferta, uma jornada, um CTA. O visitante entende, se reconhece — e só então converte.</p><span class="tag">Alta conversão</span></article>
-      <article class="card reveal"><span class="num">02</span><h3>Sites institucionais</h3><p>Marca, serviços e prova social com clareza. Contato fácil de achar — e quem chega já sabe por quê.</p><span class="tag">Leads qualificados</span></article>
-      <article class="card reveal"><span class="num">03</span><h3>Páginas imobiliárias</h3><p>Empreendimentos e ofertas visuais. Dois públicos ou uma campanha — quem chega já sabe o que busca.</p><span class="tag">Alta conversão</span></article>
+      <article class="card reveal"><span class="num">01</span><h3 data-i18n="serv1H3">Landing pages</h3><p data-i18n="serv1P">Uma oferta, uma jornada, um CTA. O visitante entende, se reconhece — e só então converte.</p><span class="tag" data-i18n="tagConv">Alta conversão</span></article>
+      <article class="card reveal"><span class="num">02</span><h3 data-i18n="serv2H3">Sites institucionais</h3><p data-i18n="serv2P">Marca, serviços e prova social com clareza. Contato fácil de achar — e quem chega já sabe por quê.</p><span class="tag" data-i18n="tagQual">Leads qualificados</span></article>
+      <article class="card reveal"><span class="num">03</span><h3 data-i18n="serv3H3">Páginas imobiliárias</h3><p data-i18n="serv3P">Empreendimentos e ofertas visuais. Dois públicos ou uma campanha — quem chega já sabe o que busca.</p><span class="tag" data-i18n="tagConv">Alta conversão</span></article>
     </div>
   </div>
 </section>
@@ -548,114 +587,114 @@
 <section id="projetos">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">02 · Cases</div>
+      <div class="kicker" data-i18n="projKicker">02 · Cases</div>
       <div>
-        <h2>Páginas no ar. Clique e veja.</h2>
-        <p class="section-copy">Landings, institucionais e imobiliárias feitas para converter — e para filtrar quem chega.</p>
+        <h2 data-i18n="projH2">Páginas no ar. Clique e veja.</h2>
+        <p class="section-copy" data-i18n="projCopy">Landings, institucionais e imobiliárias feitas para converter — e para filtrar quem chega.</p>
       </div>
     </div>
 
     <div class="proj-group reveal">
-      <h3 class="proj-group-title">Landing pages de alta conversão</h3>
+      <h3 class="proj-group-title" data-i18n="groupLp">Landing pages de alta conversão</h3>
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://malu-nutri.vercel.app/" data-title="Malu Nutri">
-            <img class="proj-cover" src="assets/covers/malu-nutri.png" alt="Capa da Malu Nutri" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/malu-nutri.png" alt="Capa da Malu Nutri" data-i18n-alt="altMalu" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">01</span><span class="kind">Conversão</span></div>
+            <div class="proj-meta"><span class="proj-index">01</span><span class="kind" data-i18n="kindConv">Conversão</span></div>
             <h3>Malu Nutri</h3>
-            <p class="blurb">Acompanhamento nutricional: identidade, serviço na frente e um único próximo passo.</p>
-            <a class="proj-cta js-open-demo" href="https://malu-nutri.vercel.app/" data-title="Malu Nutri">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbMalu">Acompanhamento nutricional: identidade, serviço na frente e um único próximo passo.</p>
+            <a class="proj-cta js-open-demo" href="https://malu-nutri.vercel.app/" data-title="Malu Nutri"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://terusfarm.vercel.app/" data-title="Terus Farm">
-            <img class="proj-cover" src="assets/covers/terus-farm.png" alt="Capa do Terus Farm" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/terus-farm.png" alt="Capa do Terus Farm" data-i18n-alt="altTerus" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">02</span><span class="kind">Conversão</span></div>
+            <div class="proj-meta"><span class="proj-index">02</span><span class="kind" data-i18n="kindConv">Conversão</span></div>
             <h3>Terus Farm</h3>
-            <p class="blurb">Produção, viveiros e decisão numa página só — caminho claro até o contato.</p>
-            <a class="proj-cta js-open-demo" href="https://terusfarm.vercel.app/" data-title="Terus Farm">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbTerus">Produção, viveiros e decisão numa página só — caminho claro até o contato.</p>
+            <a class="proj-cta js-open-demo" href="https://terusfarm.vercel.app/" data-title="Terus Farm"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://arthurnutrilp.vercel.app/" data-title="Arthur Anadon">
-            <img class="proj-cover" src="assets/covers/arthur-anadon.png" alt="Capa da landing Arthur Anadon" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/arthur-anadon.png" alt="Capa da landing Arthur Anadon" data-i18n-alt="altArthur" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">03</span><span class="kind">Conversão</span></div>
+            <div class="proj-meta"><span class="proj-index">03</span><span class="kind" data-i18n="kindConv">Conversão</span></div>
             <h3>Arthur Anadon</h3>
-            <p class="blurb">Resultado sem extremo. Um único próximo passo visível.</p>
-            <a class="proj-cta js-open-demo" href="https://arthurnutrilp.vercel.app/" data-title="Arthur Anadon">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbArthur">Resultado sem extremo. Um único próximo passo visível.</p>
+            <a class="proj-cta js-open-demo" href="https://arthurnutrilp.vercel.app/" data-title="Arthur Anadon"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://lpsamuel.vercel.app/" data-title="Grupo Atlas">
-            <img class="proj-cover" src="assets/covers/grupo-atlas.png" alt="Capa da landing Grupo Atlas" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/grupo-atlas.png" alt="Capa da landing Grupo Atlas" data-i18n-alt="altAtlas" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">04</span><span class="kind">Conversão</span></div>
+            <div class="proj-meta"><span class="proj-index">04</span><span class="kind" data-i18n="kindConv">Conversão</span></div>
             <h3>Grupo Atlas</h3>
-            <p class="blurb">Carros, motos e imóveis. Oferta clara — o lead chega mais pronto para o atendimento.</p>
-            <a class="proj-cta js-open-demo" href="https://lpsamuel.vercel.app/" data-title="Grupo Atlas">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbAtlas">Carros, motos e imóveis. Oferta clara — o lead chega mais pronto para o atendimento.</p>
+            <a class="proj-cta js-open-demo" href="https://lpsamuel.vercel.app/" data-title="Grupo Atlas"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
       </div>
     </div>
 
     <div class="proj-group reveal">
-      <h3 class="proj-group-title">Landing pages para imobiliárias</h3>
+      <h3 class="proj-group-title" data-i18n="groupImob">Landing pages para imobiliárias</h3>
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall">
-            <img class="proj-cover" src="assets/covers/lm-mall.jpg" alt="Capa do LM Office &amp; Mall" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/lm-mall.jpg" alt="Capa do LM Office &amp; Mall" data-i18n-alt="altLm" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">05</span><span class="kind">Imobiliário</span></div>
+            <div class="proj-meta"><span class="proj-index">05</span><span class="kind" data-i18n="kindImob">Imobiliário</span></div>
             <h3>LM Office &amp; Mall</h3>
-            <p class="blurb">Empreendimento comercial para quem usa e quem investe. Cada público encontra o seu caminho.</p>
-            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbLm">Empreendimento comercial para quem usa e quem investe. Cada público encontra o seu caminho.</p>
+            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence">
-            <img class="proj-cover" src="assets/covers/makani.jpg" alt="Capa do Makani Beach Residence" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/makani.jpg" alt="Capa do Makani Beach Residence" data-i18n-alt="altMakani" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">06</span><span class="kind">Imobiliário</span></div>
+            <div class="proj-meta"><span class="proj-index">06</span><span class="kind" data-i18n="kindImob">Imobiliário</span></div>
             <h3>Makani Beach Residence</h3>
-            <p class="blurb">Empreendimento à beira-mar: plantas, localização e um próximo passo claro.</p>
-            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbMakani">Empreendimento à beira-mar: plantas, localização e um próximo passo claro.</p>
+            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
       </div>
     </div>
 
     <div class="proj-group reveal">
-      <h3 class="proj-group-title">Sites institucionais</h3>
+      <h3 class="proj-group-title" data-i18n="groupInst">Sites institucionais</h3>
       <div class="proj-grid">
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://terus-platform-web.vercel.app/" data-title="Terus.TEC">
-            <img class="proj-cover" src="assets/covers/terus-platform.png" alt="Capa da Terus.TEC" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/terus-platform.png" alt="Capa da Terus.TEC" data-i18n-alt="altTerusTec" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">07</span><span class="kind">Institucional</span></div>
+            <div class="proj-meta"><span class="proj-index">07</span><span class="kind" data-i18n="kindInst">Institucional</span></div>
             <h3>Terus.TEC</h3>
-            <p class="blurb">Proposta, diferenciais e caminho claro até o contato.</p>
-            <a class="proj-cta js-open-demo" href="https://terus-platform-web.vercel.app/" data-title="Terus.TEC">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbTerusTec">Proposta, diferenciais e caminho claro até o contato.</p>
+            <a class="proj-cta js-open-demo" href="https://terus-platform-web.vercel.app/" data-title="Terus.TEC"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
         <article class="proj-card">
           <a class="proj-cover-wrap js-open-demo" href="https://champions-idiomas.vercel.app/" data-title="Champions Idiomas">
-            <img class="proj-cover" src="assets/covers/champions-idiomas.png" alt="Capa da Champions Idiomas" width="1920" height="910" loading="lazy" decoding="async">
+            <img class="proj-cover" src="assets/covers/champions-idiomas.png" alt="Capa da Champions Idiomas" data-i18n-alt="altChampions" width="1920" height="910" loading="lazy" decoding="async">
           </a>
           <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">08</span><span class="kind">Institucional</span></div>
+            <div class="proj-meta"><span class="proj-index">08</span><span class="kind" data-i18n="kindInst">Institucional</span></div>
             <h3>Champions Idiomas</h3>
-            <p class="blurb">Cursos, metodologia e aula experimental na frente.</p>
-            <a class="proj-cta js-open-demo" href="https://champions-idiomas.vercel.app/" data-title="Champions Idiomas">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbChampions">Cursos, metodologia e aula experimental na frente.</p>
+            <a class="proj-cta js-open-demo" href="https://champions-idiomas.vercel.app/" data-title="Champions Idiomas"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
       </div>
@@ -665,28 +704,28 @@
 
 <div class="proj-viewer" id="projViewer" hidden>
   <div class="proj-viewer-bar">
-    <strong id="projViewerTitle">Projeto</strong>
-    <a class="btn btn-secondary" id="projViewerExt" href="#" target="_blank" rel="noreferrer">Abrir em nova aba ↗</a>
-    <button type="button" class="btn btn-primary" id="projViewerClose">Fechar</button>
+    <strong id="projViewerTitle" data-i18n="viewerTitle">Projeto</strong>
+    <a class="btn btn-secondary" id="projViewerExt" href="#" target="_blank" rel="noreferrer" data-i18n="viewerExt">Abrir em nova aba ↗</a>
+    <button type="button" class="btn btn-primary" id="projViewerClose" data-i18n="viewerClose">Fechar</button>
   </div>
   <div class="proj-viewer-frame">
-    <iframe id="projViewerFrame" title="Prévia do projeto" referrerpolicy="no-referrer"></iframe>
+    <iframe id="projViewerFrame" title="Prévia do projeto" data-i18n-title="viewerIframe" referrerpolicy="no-referrer"></iframe>
   </div>
 </div>
 
 <section id="processo">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">03 · Como funciona</div>
+      <div class="kicker" data-i18n="procKicker">03 · Como funciona</div>
       <div>
-        <h2>Três etapas. Sem burocracia.</h2>
-        <p class="section-copy">Você não precisa chegar com o texto pronto. Eu organizo a oferta e publico a página.</p>
+        <h2 data-i18n="procH2">Três etapas. Sem burocracia.</h2>
+        <p class="section-copy" data-i18n="procCopy">Você não precisa chegar com o texto pronto. Eu organizo a oferta e publico a página.</p>
       </div>
     </div>
     <div class="timeline">
-      <div class="step reveal"><span class="step-no">01</span><h3>Entender</h3><p>Oferta, público e o que a pessoa precisa fazer no site — para chegar quem realmente se encaixa.</p></div>
-      <div class="step reveal"><span class="step-no">02</span><h3>Construir</h3><p>Copy, visual, CTA e mobile. Cada bloco existe para converter e filtrar.</p></div>
-      <div class="step reveal"><span class="step-no">03</span><h3>Publicar</h3><p>Página no ar, testada no celular, pronta para receber visita de verdade.</p></div>
+      <div class="step reveal"><span class="step-no">01</span><h3 data-i18n="proc1H3">Entender</h3><p data-i18n="proc1P">Oferta, público e o que a pessoa precisa fazer no site — para chegar quem realmente se encaixa.</p></div>
+      <div class="step reveal"><span class="step-no">02</span><h3 data-i18n="proc2H3">Construir</h3><p data-i18n="proc2P">Copy, visual, CTA e mobile. Cada bloco existe para converter e filtrar.</p></div>
+      <div class="step reveal"><span class="step-no">03</span><h3 data-i18n="proc3H3">Publicar</h3><p data-i18n="proc3P">Página no ar, testada no celular, pronta para receber visita de verdade.</p></div>
     </div>
   </div>
 </section>
@@ -694,44 +733,44 @@
 <section id="mais">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">Também construo</div>
+      <div class="kicker" data-i18n="maisKicker">Também construo</div>
       <div>
-        <h2>Sistemas e apps</h2>
-        <p class="section-copy">A mesma clareza: o que importa na frente, o próximo passo óbvio.</p>
+        <h2 data-i18n="maisH2">Sistemas e apps</h2>
+        <p class="section-copy" data-i18n="maisCopy">A mesma clareza: o que importa na frente, o próximo passo óbvio.</p>
       </div>
     </div>
     <div class="proj-grid">
       <article class="proj-card">
         <a class="proj-cover-wrap js-open-demo" href="https://ops-hub-portfolio-demo.vercel.app/login?next=%2F" data-title="Ops Hub">
-          <img class="proj-cover" src="assets/covers/ops-hub.png" alt="Capa do Ops Hub" width="1920" height="910" loading="lazy" decoding="async">
+          <img class="proj-cover" src="assets/covers/ops-hub.png" alt="Capa do Ops Hub" data-i18n-alt="altOps" width="1920" height="910" loading="lazy" decoding="async">
         </a>
         <div class="proj-body">
-          <div class="proj-meta"><span class="proj-index">09</span><span class="kind">Operação</span></div>
+          <div class="proj-meta"><span class="proj-index">09</span><span class="kind" data-i18n="kindOps">Operação</span></div>
           <h3>Ops Hub</h3>
-          <p class="blurb">Gestão multi-operação num lugar só — o que antes ficava no feeling.</p>
-          <a class="proj-cta js-open-demo" href="https://ops-hub-portfolio-demo.vercel.app/login?next=%2F" data-title="Ops Hub">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbOps">Gestão multi-operação num lugar só — o que antes ficava no feeling.</p>
+          <a class="proj-cta js-open-demo" href="https://ops-hub-portfolio-demo.vercel.app/login?next=%2F" data-title="Ops Hub"><span data-i18n="openProject">Abrir projeto ↗</span></a>
         </div>
       </article>
       <article class="proj-card">
         <a class="proj-cover-wrap js-open-demo" href="https://odontology-finance.vercel.app/dashboard" data-title="Odontology Finance">
-          <img class="proj-cover" src="assets/covers/odontology-finance.png" alt="Capa do Odontology Finance" width="1920" height="910" loading="lazy" decoding="async">
+          <img class="proj-cover" src="assets/covers/odontology-finance.png" alt="Capa do Odontology Finance" data-i18n-alt="altOdonto" width="1920" height="910" loading="lazy" decoding="async">
         </a>
         <div class="proj-body">
-          <div class="proj-meta"><span class="proj-index">10</span><span class="kind">Financeiro</span></div>
+          <div class="proj-meta"><span class="proj-index">10</span><span class="kind" data-i18n="kindFin">Financeiro</span></div>
           <h3>Odontology Finance</h3>
-          <p class="blurb">Pacientes, parcelas e contas a pagar no fluxo diário. Demo com dados fictícios.</p>
-          <a class="proj-cta js-open-demo" href="https://odontology-finance.vercel.app/dashboard" data-title="Odontology Finance">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbOdonto">Pacientes, parcelas e contas a pagar no fluxo diário. Demo com dados fictícios.</p>
+          <a class="proj-cta js-open-demo" href="https://odontology-finance.vercel.app/dashboard" data-title="Odontology Finance"><span data-i18n="openProject">Abrir projeto ↗</span></a>
         </div>
       </article>
       <article class="proj-card">
         <a class="proj-cover-wrap js-open-demo" href="https://evolucaofisica-cursor.vercel.app/login" data-title="FORMA">
-          <img class="proj-cover" src="assets/covers/forma.png" alt="Capa do FORMA" width="1920" height="910" loading="lazy" decoding="async">
+          <img class="proj-cover" src="assets/covers/forma.png" alt="Capa do FORMA" data-i18n-alt="altForma" width="1920" height="910" loading="lazy" decoding="async">
         </a>
         <div class="proj-body">
-          <div class="proj-meta"><span class="proj-index">11</span><span class="kind">Saúde</span></div>
+          <div class="proj-meta"><span class="proj-index">11</span><span class="kind" data-i18n="kindHealth">Saúde</span></div>
           <h3>FORMA</h3>
-          <p class="blurb">Dieta, treino e acompanhamento num só lugar.</p>
-          <a class="proj-cta js-open-demo" href="https://evolucaofisica-cursor.vercel.app/login" data-title="FORMA">Abrir projeto ↗</a>
+            <p class="blurb" data-i18n="blurbForma">Dieta, treino e acompanhamento num só lugar.</p>
+          <a class="proj-cta js-open-demo" href="https://evolucaofisica-cursor.vercel.app/login" data-title="FORMA"><span data-i18n="openProject">Abrir projeto ↗</span></a>
         </div>
       </article>
     </div>
@@ -741,11 +780,11 @@
 <section class="cta-section" id="contato">
   <div class="wrap">
     <div class="cta-box reveal">
-      <div class="kicker">Vamos começar</div>
-      <h2>Me conta o que precisa converter. Eu transformo isso em uma página de alta conversão — com leads mais qualificados.</h2>
-      <p>Primeira mensagem: o serviço, para quem é, e o que a pessoa deve fazer no site. A partir daí, eu indico o formato e os próximos passos.</p>
+      <div class="kicker" data-i18n="ctaKicker">Vamos começar</div>
+      <h2 data-i18n="ctaH2">Me conta o que precisa converter. Eu transformo isso em uma página de alta conversão — com leads mais qualificados.</h2>
+      <p data-i18n="ctaP">Primeira mensagem: o serviço, para quem é, e o que a pessoa deve fazer no site. A partir daí, eu indico o formato e os próximos passos.</p>
       <div class="cta-actions">
-        <a href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+        <a data-wa data-i18n="heroWhatsapp" href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
       </div>
     </div>
   </div>
@@ -753,11 +792,257 @@
 </main>
 
 <footer>
-  <div class="wrap footer-inner"><span>Lucas Henrique — landing pages e sites institucionais</span><span>Alta conversão · Leads qualificados · 2026</span></div>
+  <div class="wrap footer-inner"><span data-i18n="footer1">Lucas Henrique — landing pages e sites institucionais</span><span data-i18n="footer2">Alta conversão · Leads qualificados · 2026</span></div>
 </footer>
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var currentLang = 'pt';
+  var I18N = {
+    pt: {
+      html:'pt-BR', code:'PT', label:'português', next:'english', tipo:'Tipo ',
+      title:'Lucas Henrique — Landing pages e sites institucionais',
+      desc:'Landing pages e sites institucionais de alta conversão, que qualificam os leads antes de chegarem até você. Lucas Henrique.',
+      wa:'Olá Lucas, vi sua apresentação e gostaria de conversar.',
+      menuOpen:'Abrir menu', menuClose:'Fechar menu',
+      langAria:'Idioma: português. Clique para english.',
+      navServicos:'Serviços', navProjetos:'Projetos', navContato:'Contato', navWhatsapp:'Falar no WhatsApp ↗',
+      heroEyebrow:'landing pages · sites institucionais',
+      heroH1:'Páginas de <span class="grad">alta conversão</span> — leads mais qualificados, não só mais visitas.',
+      heroLead:'A página explica, filtra e convence. Quem chega já entendeu o que você faz — e se encaixa.',
+      heroWhatsapp:'Falar no WhatsApp', heroCases:'Ver cases ↓',
+      glassFocus:'Meu foco', glassStatus:'● alta conversão',
+      glassH3:'Uma oferta clara. Um caminho. Leads que chegam prontos.',
+      chipLp:'Landing Pages', chipInst:'Sites Institucionais', chipConv:'Alta conversão', chipQual:'Qualificação',
+      metricConv:'alta conversão', metricQual:'leads mais qualificados',
+      servKicker:'01 · O que eu faço', servH2:'Landing pages e sites institucionais feitos para converter.',
+      servCopy:'Estratégia, copy, visual e publicação. Quem chega já entendeu a oferta — e já se filtrou.',
+      serv1H3:'Landing pages', serv1P:'Uma oferta, uma jornada, um CTA. O visitante entende, se reconhece — e só então converte.',
+      serv2H3:'Sites institucionais', serv2P:'Marca, serviços e prova social com clareza. Contato fácil de achar — e quem chega já sabe por quê.',
+      serv3H3:'Páginas imobiliárias', serv3P:'Empreendimentos e ofertas visuais. Dois públicos ou uma campanha — quem chega já sabe o que busca.',
+      tagConv:'Alta conversão', tagQual:'Leads qualificados',
+      projKicker:'02 · Cases', projH2:'Páginas no ar. Clique e veja.',
+      projCopy:'Landings, institucionais e imobiliárias feitas para converter — e para filtrar quem chega.',
+      groupLp:'Landing pages de alta conversão', groupImob:'Landing pages para imobiliárias', groupInst:'Sites institucionais',
+      kindConv:'Conversão', kindImob:'Imobiliário', kindInst:'Institucional', kindOps:'Operação', kindFin:'Financeiro', kindHealth:'Saúde',
+      blurbMalu:'Acompanhamento nutricional: identidade, serviço na frente e um único próximo passo.',
+      blurbTerus:'Produção, viveiros e decisão numa página só — caminho claro até o contato.',
+      blurbArthur:'Resultado sem extremo. Um único próximo passo visível.',
+      blurbAtlas:'Carros, motos e imóveis. Oferta clara — o lead chega mais pronto para o atendimento.',
+      blurbLm:'Empreendimento comercial para quem usa e quem investe. Cada público encontra o seu caminho.',
+      blurbMakani:'Empreendimento à beira-mar: plantas, localização e um próximo passo claro.',
+      blurbTerusTec:'Proposta, diferenciais e caminho claro até o contato.',
+      blurbChampions:'Cursos, metodologia e aula experimental na frente.',
+      blurbOps:'Gestão multi-operação num lugar só — o que antes ficava no feeling.',
+      blurbOdonto:'Pacientes, parcelas e contas a pagar no fluxo diário. Demo com dados fictícios.',
+      blurbForma:'Dieta, treino e acompanhamento num só lugar.',
+      openProject:'Abrir projeto ↗',
+      viewerTitle:'Projeto', viewerExt:'Abrir em nova aba ↗', viewerClose:'Fechar', viewerIframe:'Prévia do projeto',
+      procKicker:'03 · Como funciona', procH2:'Três etapas. Sem burocracia.',
+      procCopy:'Você não precisa chegar com o texto pronto. Eu organizo a oferta e publico a página.',
+      proc1H3:'Entender', proc1P:'Oferta, público e o que a pessoa precisa fazer no site — para chegar quem realmente se encaixa.',
+      proc2H3:'Construir', proc2P:'Copy, visual, CTA e mobile. Cada bloco existe para converter e filtrar.',
+      proc3H3:'Publicar', proc3P:'Página no ar, testada no celular, pronta para receber visita de verdade.',
+      maisKicker:'Também construo', maisH2:'Sistemas e apps',
+      maisCopy:'A mesma clareza: o que importa na frente, o próximo passo óbvio.',
+      ctaKicker:'Vamos começar',
+      ctaH2:'Me conta o que precisa converter. Eu transformo isso em uma página de alta conversão — com leads mais qualificados.',
+      ctaP:'Primeira mensagem: o serviço, para quem é, e o que a pessoa deve fazer no site. A partir daí, eu indico o formato e os próximos passos.',
+      footer1:'Lucas Henrique — landing pages e sites institucionais',
+      footer2:'Alta conversão · Leads qualificados · 2026',
+      altMalu:'Capa da Malu Nutri', altTerus:'Capa do Terus Farm', altArthur:'Capa da landing Arthur Anadon',
+      altAtlas:'Capa da landing Grupo Atlas', altLm:'Capa do LM Office & Mall', altMakani:'Capa do Makani Beach Residence',
+      altTerusTec:'Capa da Terus.TEC', altChampions:'Capa da Champions Idiomas', altOps:'Capa do Ops Hub',
+      altOdonto:'Capa do Odontology Finance', altForma:'Capa do FORMA'
+    },
+    en: {
+      html:'en', code:'EN', label:'english', next:'español', tipo:'Type ',
+      title:'Lucas Henrique — High-conversion landing pages and institutional sites',
+      desc:'High-conversion landing pages and institutional sites that qualify leads before they reach you. Lucas Henrique.',
+      wa:'Hi Lucas, I saw your presentation and would like to talk.',
+      menuOpen:'Open menu', menuClose:'Close menu',
+      langAria:'Language: english. Click for español.',
+      navServicos:'Services', navProjetos:'Work', navContato:'Contact', navWhatsapp:'Chat on WhatsApp ↗',
+      heroEyebrow:'landing pages · institutional sites',
+      heroH1:'<span class="grad">High-conversion</span> pages — more qualified leads, not just more visits.',
+      heroLead:'The page explains, filters, and persuades. Whoever arrives already understands what you do — and is a fit.',
+      heroWhatsapp:'Chat on WhatsApp', heroCases:'See the work ↓',
+      glassFocus:'My focus', glassStatus:'● high conversion',
+      glassH3:'A clear offer. One path. Leads who arrive ready.',
+      chipLp:'Landing Pages', chipInst:'Institutional Sites', chipConv:'High conversion', chipQual:'Qualification',
+      metricConv:'high conversion', metricQual:'more qualified leads',
+      servKicker:'01 · What I do', servH2:'Landing pages and institutional sites built to convert.',
+      servCopy:'Strategy, copy, visuals, and launch. Whoever arrives already understood the offer — and already filtered themselves.',
+      serv1H3:'Landing pages', serv1P:'One offer, one journey, one CTA. The visitor understands, recognizes themselves — and only then converts.',
+      serv2H3:'Institutional sites', serv2P:'Brand, services, and social proof with clarity. Contact that is easy to find — and whoever arrives already knows why.',
+      serv3H3:'Real-estate pages', serv3P:'Developments and visual offers. Two audiences or one campaign — whoever arrives already knows what they want.',
+      tagConv:'High conversion', tagQual:'Qualified leads',
+      projKicker:'02 · Work', projH2:'Live pages. Click and see.',
+      projCopy:'Landing, institutional, and real-estate pages built to convert — and to filter who arrives.',
+      groupLp:'High-conversion landing pages', groupImob:'Landing pages for real estate', groupInst:'Institutional sites',
+      kindConv:'Conversion', kindImob:'Real estate', kindInst:'Institutional', kindOps:'Operations', kindFin:'Finance', kindHealth:'Health',
+      blurbMalu:'Nutrition coaching: identity, the service up front, and a single next step.',
+      blurbTerus:'Production, nurseries, and the decision on one page — a clear path to contact.',
+      blurbArthur:'Results without extremes. One visible next step.',
+      blurbAtlas:'Cars, bikes, and property. A clear offer — the lead arrives more ready for the conversation.',
+      blurbLm:'A commercial development for those who use it and those who invest. Each audience finds its path.',
+      blurbMakani:'A waterfront development: floor plans, location, and a clear next step.',
+      blurbTerusTec:'Proposition, differentiators, and a clear path to contact.',
+      blurbChampions:'Courses, method, and the trial class up front.',
+      blurbOps:'Multi-operation management in one place — what used to live on gut feeling.',
+      blurbOdonto:'Patients, installments, and bills in the daily flow. The public demo uses fictional data.',
+      blurbForma:'Diet, training, and follow-up in one place.',
+      openProject:'Open project ↗',
+      viewerTitle:'Project', viewerExt:'Open in a new tab ↗', viewerClose:'Close', viewerIframe:'Project preview',
+      procKicker:'03 · How it works', procH2:'Three steps. No bureaucracy.',
+      procCopy:'You do not need to arrive with the copy ready. I shape the offer and publish the page.',
+      proc1H3:'Understand', proc1P:'Offer, audience, and what the person should do on the site — so the people who arrive actually fit.',
+      proc2H3:'Build', proc2P:'Copy, visuals, CTA, and mobile. Every block exists to convert and filter.',
+      proc3H3:'Publish', proc3P:'A live page, tested on mobile, ready for real visits.',
+      maisKicker:'I also build', maisH2:'Systems and apps',
+      maisCopy:'The same clarity: what matters up front, the next step obvious.',
+      ctaKicker:'Let’s start',
+      ctaH2:'Tell me what needs to convert. I turn it into a high-conversion page — with more qualified leads.',
+      ctaP:'First message: the service, who it is for, and what the person should do on the site. From there I suggest the format and the next steps.',
+      footer1:'Lucas Henrique — landing pages and institutional sites',
+      footer2:'High conversion · Qualified leads · 2026',
+      altMalu:'Malu Nutri cover', altTerus:'Terus Farm cover', altArthur:'Arthur Anadon landing cover',
+      altAtlas:'Grupo Atlas landing cover', altLm:'LM Office & Mall cover', altMakani:'Makani Beach Residence cover',
+      altTerusTec:'Terus.TEC cover', altChampions:'Champions Idiomas cover', altOps:'Ops Hub cover',
+      altOdonto:'Odontology Finance cover', altForma:'FORMA cover'
+    },
+    es: {
+      html:'es', code:'ES', label:'español', next:'português', tipo:'Tipo ',
+      title:'Lucas Henrique — Landing pages y sitios institucionales de alta conversión',
+      desc:'Landing pages y sitios institucionales de alta conversión, que califican los leads antes de que lleguen a ti. Lucas Henrique.',
+      wa:'Hola Lucas, vi tu presentación y me gustaría conversar.',
+      menuOpen:'Abrir menú', menuClose:'Cerrar menú',
+      langAria:'Idioma: español. Haz clic para português.',
+      navServicos:'Servicios', navProjetos:'Proyectos', navContato:'Contacto', navWhatsapp:'Hablar por WhatsApp ↗',
+      heroEyebrow:'landing pages · sitios institucionales',
+      heroH1:'Páginas de <span class="grad">alta conversión</span> — leads más calificados, no solo más visitas.',
+      heroLead:'La página explica, filtra y convence. Quien llega ya entendió lo que haces — y encaja.',
+      heroWhatsapp:'Hablar por WhatsApp', heroCases:'Ver casos ↓',
+      glassFocus:'Mi foco', glassStatus:'● alta conversión',
+      glassH3:'Una oferta clara. Un camino. Leads que llegan listos.',
+      chipLp:'Landing Pages', chipInst:'Sitios institucionales', chipConv:'Alta conversión', chipQual:'Calificación',
+      metricConv:'alta conversión', metricQual:'leads más calificados',
+      servKicker:'01 · Lo que hago', servH2:'Landing pages y sitios institucionales hechos para convertir.',
+      servCopy:'Estrategia, copy, visual y publicación. Quien llega ya entendió la oferta — y ya se filtró.',
+      serv1H3:'Landing pages', serv1P:'Una oferta, un recorrido, un CTA. El visitante entiende, se reconoce — y solo entonces convierte.',
+      serv2H3:'Sitios institucionales', serv2P:'Marca, servicios y prueba social con claridad. Contacto fácil de encontrar — y quien llega ya sabe por qué.',
+      serv3H3:'Páginas inmobiliarias', serv3P:'Emprendimientos y ofertas visuales. Dos públicos o una campaña — quien llega ya sabe lo que busca.',
+      tagConv:'Alta conversión', tagQual:'Leads calificados',
+      projKicker:'02 · Casos', projH2:'Páginas en el aire. Haz clic y mira.',
+      projCopy:'Landings, institucionales e inmobiliarias hechas para convertir — y para filtrar a quien llega.',
+      groupLp:'Landing pages de alta conversión', groupImob:'Landing pages para inmobiliarias', groupInst:'Sitios institucionales',
+      kindConv:'Conversión', kindImob:'Inmobiliario', kindInst:'Institucional', kindOps:'Operación', kindFin:'Financiero', kindHealth:'Salud',
+      blurbMalu:'Acompañamiento nutricional: identidad, el servicio al frente y un único siguiente paso.',
+      blurbTerus:'Producción, viveros y la decisión en una sola página — camino claro hasta el contacto.',
+      blurbArthur:'Resultado sin extremos. Un único siguiente paso visible.',
+      blurbAtlas:'Autos, motos e inmuebles. Oferta clara — el lead llega más listo para la atención.',
+      blurbLm:'Emprendimiento comercial para quien usa y quien invierte. Cada público encuentra su camino.',
+      blurbMakani:'Emprendimiento frente al mar: plantas, ubicación y un siguiente paso claro.',
+      blurbTerusTec:'Propuesta, diferenciales y un camino claro hasta el contacto.',
+      blurbChampions:'Cursos, metodología y la clase de prueba al frente.',
+      blurbOps:'Gestión multioperación en un solo lugar — lo que antes quedaba en el feeling.',
+      blurbOdonto:'Pacientes, cuotas y cuentas por pagar en el flujo diario. La demo pública usa datos ficticios.',
+      blurbForma:'Dieta, entrenamiento y seguimiento en un solo lugar.',
+      openProject:'Abrir proyecto ↗',
+      viewerTitle:'Proyecto', viewerExt:'Abrir en una pestaña nueva ↗', viewerClose:'Cerrar', viewerIframe:'Vista previa del proyecto',
+      procKicker:'03 · Cómo funciona', procH2:'Tres etapas. Sin burocracia.',
+      procCopy:'No necesitas llegar con el texto listo. Yo organizo la oferta y publico la página.',
+      proc1H3:'Entender', proc1P:'Oferta, público y lo que la persona debe hacer en el sitio — para que llegue quien realmente encaja.',
+      proc2H3:'Construir', proc2P:'Copy, visual, CTA y mobile. Cada bloque existe para convertir y filtrar.',
+      proc3H3:'Publicar', proc3P:'Página en el aire, probada en el celular, lista para recibir visitas de verdad.',
+      maisKicker:'También construyo', maisH2:'Sistemas y apps',
+      maisCopy:'La misma claridad: lo que importa al frente, el siguiente paso obvio.',
+      ctaKicker:'Empecemos',
+      ctaH2:'Cuéntame qué necesita convertir. Lo transformo en una página de alta conversión — con leads más calificados.',
+      ctaP:'Primer mensaje: el servicio, para quién es y qué debe hacer la persona en el sitio. A partir de ahí indico el formato y los siguientes pasos.',
+      footer1:'Lucas Henrique — landing pages y sitios institucionales',
+      footer2:'Alta conversión · Leads calificados · 2026',
+      altMalu:'Portada de Malu Nutri', altTerus:'Portada de Terus Farm', altArthur:'Portada de la landing Arthur Anadon',
+      altAtlas:'Portada de la landing Grupo Atlas', altLm:'Portada de LM Office & Mall', altMakani:'Portada de Makani Beach Residence',
+      altTerusTec:'Portada de Terus.TEC', altChampions:'Portada de Champions Idiomas', altOps:'Portada de Ops Hub',
+      altOdonto:'Portada de Odontology Finance', altForma:'Portada de FORMA'
+    }
+  };
+  var LANGS = ['pt','en','es'];
+  var WA_BASE = 'https://wa.me/5585996505083?text=';
+
+  function pack(lang){
+    return I18N[lang] || I18N.pt;
+  }
+  function applyLang(lang){
+    if(!I18N[lang]) lang = 'pt';
+    currentLang = lang;
+    var d = pack(lang);
+    document.documentElement.lang = d.html;
+    document.documentElement.style.setProperty('--tipo-word', '"' + String(d.tipo).replace(/"/g,'') + '"');
+    document.title = d.title;
+    var meta = document.getElementById('metaDesc');
+    if(meta) meta.setAttribute('content', d.desc);
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for(var i=0;i<nodes.length;i++){
+      var k = nodes[i].getAttribute('data-i18n');
+      if(nodes[i].id === 'projViewerTitle' && document.body.classList.contains('viewer-open')) continue;
+      if(d[k] != null) nodes[i].textContent = d[k];
+    }
+    var htmls = document.querySelectorAll('[data-i18n-html]');
+    for(var h=0;h<htmls.length;h++){
+      var hk = htmls[h].getAttribute('data-i18n-html');
+      if(d[hk] != null) htmls[h].innerHTML = d[hk];
+    }
+    var alts = document.querySelectorAll('[data-i18n-alt]');
+    for(var a=0;a<alts.length;a++){
+      var ak = alts[a].getAttribute('data-i18n-alt');
+      if(d[ak] != null) alts[a].setAttribute('alt', d[ak]);
+    }
+    var titles = document.querySelectorAll('[data-i18n-title]');
+    for(var t=0;t<titles.length;t++){
+      var tk = titles[t].getAttribute('data-i18n-title');
+      if(d[tk] != null) titles[t].setAttribute('title', d[tk]);
+    }
+    var wa = document.querySelectorAll('[data-wa]');
+    var href = WA_BASE + encodeURIComponent(d.wa);
+    for(var w=0;w<wa.length;w++) wa[w].setAttribute('href', href);
+    var code = document.getElementById('langCode');
+    var name = document.getElementById('langName');
+    var btn = document.getElementById('langToggle');
+    if(code) code.textContent = d.code;
+    if(name) name.textContent = d.label;
+    if(btn) btn.setAttribute('aria-label', d.langAria);
+    var toggle = document.querySelector('.nav-toggle');
+    if(toggle){
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-label', open ? d.menuClose : d.menuOpen);
+    }
+    try{ localStorage.setItem('lh-lang', lang); }catch(e){}
+    document.documentElement.classList.remove('i18n-pending');
+  }
+  function detectLang(){
+    try{
+      var saved = localStorage.getItem('lh-lang');
+      if(saved && I18N[saved]) return saved;
+    }catch(e){}
+    var n = (navigator.language || '').toLowerCase();
+    if(n.indexOf('es') === 0) return 'es';
+    if(n.indexOf('en') === 0) return 'en';
+    return 'pt';
+  }
+  try{
+    applyLang(detectLang());
+    var langBtn = document.getElementById('langToggle');
+    if(langBtn){
+      langBtn.addEventListener('click', function(){
+        var idx = LANGS.indexOf(currentLang);
+        applyLang(LANGS[(idx + 1) % LANGS.length]);
+      });
+    }
+  }catch(err){
+    document.documentElement.classList.remove('i18n-pending');
+  }
 
   try{
     var groups = document.querySelectorAll('.grid-3,.timeline,.deliver-grid,.method-grid,.usecases,.principles,.problem-list,.proj-grid');
@@ -820,14 +1105,14 @@
         menu.hidden = true;
         document.body.classList.remove('menu-open');
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Abrir menu');
+        toggle.setAttribute('aria-label', pack(currentLang).menuOpen);
       };
       var openMenu = function(){
         menu.hidden = false;
         menu.classList.add('open');
         document.body.classList.add('menu-open');
         toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('aria-label', 'Fechar menu');
+        toggle.setAttribute('aria-label', pack(currentLang).menuClose);
       };
       toggle.addEventListener('click', function(){
         if(menu.classList.contains('open')) closeMenu();
@@ -859,7 +1144,7 @@
         frame.src = 'about:blank';
       };
       var openViewer = function(url, title){
-        titleEl.textContent = title || 'Projeto';
+        titleEl.textContent = title || pack(currentLang).viewerTitle;
         ext.href = url;
         frame.src = url;
         viewer.hidden = false;
