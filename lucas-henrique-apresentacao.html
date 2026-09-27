@@ -385,7 +385,10 @@
   .proj-card .blurb{color:var(--muted);font-size:15px;flex:1;margin:0}
   .proj-cta{margin-top:16px;font-size:14px;font-weight:800;transition:color .25s var(--ease), transform .35s var(--ease)}
   .proj-cta:hover,.proj-cta:active{color:var(--cyan);transform:translateX(4px)}
-  @media(min-width:760px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:760px){
+    .proj-grid{grid-template-columns:repeat(2,1fr)}
+    .proj-grid:has(> .proj-card:only-child){grid-template-columns:1fr;max-width:calc(50% - 8px)}
+  }
 
   .proj-viewer{
     position:fixed;inset:0;z-index:200;
@@ -658,17 +661,6 @@
             <a class="proj-cta js-open-demo" href="https://lucash67.github.io/lm-mall/" data-title="LM Office &amp; Mall"><span data-i18n="openProject">Abrir projeto ↗</span></a>
           </div>
         </article>
-        <article class="proj-card">
-          <a class="proj-cover-wrap js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence">
-            <img class="proj-cover" src="assets/covers/makani.jpg" alt="Capa do Makani Beach Residence" data-i18n-alt="altMakani" width="1920" height="910" loading="lazy" decoding="async">
-          </a>
-          <div class="proj-body">
-            <div class="proj-meta"><span class="proj-index">06</span><span class="kind" data-i18n="kindImob">Imobiliário</span></div>
-            <h3>Makani Beach Residence</h3>
-            <p class="blurb" data-i18n="blurbMakani">Empreendimento à beira-mar: plantas, localização e um próximo passo claro.</p>
-            <a class="proj-cta js-open-demo" href="https://lucash67.github.io/makani/" data-title="Makani Beach Residence"><span data-i18n="openProject">Abrir projeto ↗</span></a>
-          </div>
-        </article>
       </div>
     </div>
 
@@ -730,7 +722,7 @@
   </div>
 </section>
 
-<section id="mais">
+<section id="mais" hidden>
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker" data-i18n="maisKicker">Também construo</div>
