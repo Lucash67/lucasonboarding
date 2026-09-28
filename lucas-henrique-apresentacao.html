@@ -80,7 +80,7 @@
     margin:0;
     color:var(--text);
     background:
-      radial-gradient(circle at var(--mx, 18%) var(--my, 12%), rgba(92,124,255,.18), transparent 34%),
+      radial-gradient(circle at 8% 8%, rgba(92,124,255,.16), transparent 31%),
       radial-gradient(circle at 92% 12%, rgba(102,228,255,.11), transparent 26%),
       radial-gradient(circle at 65% 75%, rgba(157,108,255,.10), transparent 29%),
       var(--bg);
@@ -106,12 +106,6 @@
   .skip:focus{transform:none}
   .grain{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.03;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 1px,transparent 1px 3px)}
   main,footer{position:relative;z-index:2}
-  .pointer-glow{
-    position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:radial-gradient(420px circle at var(--mx, 50%) var(--my, 20%), rgba(102,228,255,.14), rgba(92,124,255,.06) 28%, transparent 58%);
-    mix-blend-mode:screen;opacity:.85;
-    transition:opacity .6s var(--ease);
-  }
   .letterbox i{
     position:fixed;left:0;right:0;height:0;z-index:70;pointer-events:none;
     background:#020306;transition:height .9s var(--ease);
@@ -206,9 +200,6 @@
   h1 .accent{color:var(--cyan)}
   .lead{max-width:560px;font-size:clamp(17px,2vw,22px);line-height:1.5;color:#bec8d3;letter-spacing:-.015em}
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-  .hero-note{margin:14px 0 0;max-width:460px;font-size:14px;line-height:1.45;color:#8b97a6}
-  .hero-proof{margin-top:28px;max-width:520px;color:#7f8b98;font-size:13px;line-height:1.5}
-  .hero-proof strong{display:block;color:#c5ced8;font-size:12px;font-weight:700;letter-spacing:.04em;margin-bottom:4px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;font-weight:800;font-size:15px;border:1px solid var(--line);position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease), background .25s var(--ease), border-color .25s var(--ease)}
   .btn:hover,.btn:active{transform:translateY(-3px)}
   .btn:active{transform:translateY(0) scale(.98)}
@@ -381,19 +372,6 @@
   .question strong{color:var(--cyan)}
 
   .timeline{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .timeline-rail{
-    display:none;position:absolute;left:10%;right:10%;top:22px;height:1px;
-    background:rgba(255,255,255,.08);pointer-events:none;
-  }
-  .timeline-rail > i{
-    display:block;height:100%;width:var(--rail,0%);
-    background:linear-gradient(90deg,var(--cyan),var(--violet));
-    box-shadow:0 0 12px rgba(102,228,255,.35);
-    transition:width .25s linear;
-  }
-  @media(min-width:901px){
-    .timeline-rail{display:block}
-  }
   .step-no{font-size:12px;color:var(--cyan);text-transform:uppercase;letter-spacing:.14em;font-weight:800}
   .step h3{font-size:25px;margin:42px 0 12px;letter-spacing:-.04em}
   .step p{margin:0;color:var(--muted);font-size:14px}
@@ -636,7 +614,7 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     .orb,.js-ready .chip,.mobile-nav.open,.glass-track,.ring-3d,.cta-box:before,.cta-box:after,.hero-copy > *,.hero-panel{animation:none}
-    .cube-3d,.plane-3d,.ring-3d,.pointer-glow,.letterbox{display:none}
+    .cube-3d,.plane-3d,.ring-3d,.letterbox{display:none}
     .hero-copy > *,.hero-panel{opacity:1;filter:none;transform:none}
     .glass-track,.glass-card,.btn,.btn:hover,.btn:active,.nav-cta:hover,.lang-toggle:hover,.lang-toggle:focus-visible,.proj-cta:hover,.brand:hover .brand-mark,.brand:active .brand-mark,.cta-box,.mid-cta-box{transform:none !important}
     .card:hover,.card:active,.principle:hover,.principle:active,.problem:hover,.problem:active,.step:hover,.step:active,.deliver:hover,.deliver:active,.usecase:hover,.usecase:active,.statement:hover,.statement:active,.question-box:hover,.question-box:active,.method:hover,.method:active,.proj-card:hover,.proj-card:active{transform:none}
@@ -651,7 +629,6 @@
 </head>
 <body>
 <a class="skip" href="#inicio" data-i18n="skip">Ir para o conteúdo</a>
-<div class="pointer-glow" aria-hidden="true"></div>
 <div class="letterbox" aria-hidden="true"><i></i><i></i></div>
 <div class="grain"></div>
 <nav class="nav">
@@ -692,8 +669,6 @@
         <a data-wa data-track="whatsapp" data-placement="hero" data-i18n="heroWhatsapp" href="https://wa.me/5585996505083?text=Ol%C3%A1%20Lucas%2C%20vi%20sua%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20conversar." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Conversar no WhatsApp</a>
         <a href="#projetos" class="btn btn-secondary" data-i18n="heroCases">Ver páginas no ar</a>
       </div>
-      <p class="hero-note" data-i18n="heroNote">Sem formulário. Na primeira mensagem: o serviço, para quem é e o que a pessoa deve fazer no site.</p>
-      <p class="hero-proof"><strong data-i18n="heroProofLabel">Páginas no ar</strong> <span data-i18n="heroProof">Malu Nutri, Arthur Anadon, Grupo Atlas, Terus Farm, LM Office &amp; Mall, Terus.TEC e Champions Idiomas.</span></p>
     </div>
     <div class="hero-panel">
       <div class="stage-3d">
@@ -869,7 +844,6 @@
       </div>
     </div>
     <div class="timeline">
-      <div class="timeline-rail" aria-hidden="true"><i></i></div>
       <div class="step reveal"><span class="step-no">01</span><h3 data-i18n="proc1H3">Entender</h3><p data-i18n="proc1P">Oferta, público e o que a pessoa precisa fazer no site — para chegar quem realmente se encaixa.</p></div>
       <div class="step reveal"><span class="step-no">02</span><h3 data-i18n="proc2H3">Construir</h3><p data-i18n="proc2P">Copy, visual, CTA e mobile. Cada bloco existe para converter e filtrar.</p></div>
       <div class="step reveal"><span class="step-no">03</span><h3 data-i18n="proc3H3">Publicar</h3><p data-i18n="proc3P">Página no ar, testada no celular, pronta para receber visita de verdade.</p></div>
@@ -1263,13 +1237,11 @@
   try{
     var nav = document.querySelector('.nav');
     var glassTrack = document.querySelector('.glass-track');
-    var rail = document.querySelector('.timeline-rail > i');
-    var process = document.getElementById('processo');
     var cssParallax = !!(window.CSS && CSS.supports && (CSS.supports('animation-timeline: scroll()') || CSS.supports('animation-timeline', 'scroll()')));
     var lastY = 0;
     var sections = document.querySelectorAll('main section[id]');
     var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-    if(nav || (glassTrack && !reduce) || rail){
+    if(nav || (glassTrack && !reduce)){
       var ticking = false;
       var onScroll = function(){
         if(ticking) return;
@@ -1289,12 +1261,6 @@
           if(glassTrack && !reduce && !cssParallax){
             var paray = Math.max(-132, Math.min(28, 28 - y * 0.22));
             glassTrack.style.setProperty('--paray', paray.toFixed(1) + 'px');
-          }
-          if(rail && process){
-            var pr = process.getBoundingClientRect();
-            var span = Math.max(1, pr.height - window.innerHeight * 0.35);
-            var p = Math.min(1, Math.max(0, (window.innerHeight * 0.45 - pr.top) / span));
-            rail.style.setProperty('--rail', (p * 100).toFixed(1) + '%');
           }
           if(navLinks.length && sections.length){
             var current = '';
@@ -1318,20 +1284,8 @@
   try{
     if(!reduce){
       requestAnimationFrame(function(){ document.documentElement.classList.add('booted'); });
-      var mx = window.innerWidth * 0.35, my = 140, tx = mx, ty = my;
       var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
       if(fine){
-        document.addEventListener('pointermove', function(e){
-          tx = e.clientX; ty = e.clientY;
-        }, {passive:true});
-        var glowTick = function(){
-          mx += (tx - mx) * 0.1;
-          my += (ty - my) * 0.1;
-          document.documentElement.style.setProperty('--mx', mx.toFixed(1) + 'px');
-          document.documentElement.style.setProperty('--my', my.toFixed(1) + 'px');
-          requestAnimationFrame(glowTick);
-        };
-        requestAnimationFrame(glowTick);
         var stage = document.querySelector('.stage-3d');
         var card = document.querySelector('.glass-card');
         if(stage && card){
