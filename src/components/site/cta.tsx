@@ -1,5 +1,12 @@
+import { Github, Instagram, Linkedin } from "lucide-react";
 import { useI18n } from "@/components/site/i18n";
 import { Reveal, RollText } from "@/components/site/motion";
+
+const SOCIALS = [
+  { label: "GitHub", href: "https://github.com/Lucash67", Icon: Github },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/lucas-henrique-a67970380", Icon: Linkedin },
+  { label: "Instagram", href: "https://instagram.com/lucash.ia", Icon: Instagram },
+];
 
 /**
  * CTA final: estrutura do Mars ("E aí, vai me contratar?": título gigante em degradê,
@@ -30,9 +37,19 @@ export function FinalCta() {
             </a>
         </Reveal>
       </div>
-      <footer className="flex items-center justify-between border-t px-[var(--pad)] py-6 text-sm text-muted-foreground">
+      <footer className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t px-[var(--pad)] py-6 text-sm text-muted-foreground">
         <span>{c.copy}</span>
-        <a href="#inicio">{c.top} ↑</a>
+        <nav aria-label="Redes" className="flex items-center gap-6 order-last w-full justify-center sm:order-none sm:w-auto">
+          {SOCIALS.map(({ label, href, Icon }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-foreground">
+              <Icon size={16} aria-hidden />
+              {label}
+            </a>
+          ))}
+        </nav>
+        <a href="#inicio" className="transition hover:text-foreground">
+          {c.top} ↑
+        </a>
       </footer>
     </section>
   );
