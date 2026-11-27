@@ -27,6 +27,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://lucashportfolio.vercel.app/og.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://lucashportfolio.vercel.app/" }],
   }),
   component: Index,
 });
