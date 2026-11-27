@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Monitor, Smartphone, X, ArrowRight, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
-import { webProjects, type Project } from "@/lib/projects";
+import { liveProjects as webProjects, type Project } from "@/lib/projects";
 import { useI18n } from "@/components/site/i18n";
 
 export function ProjectViewer({

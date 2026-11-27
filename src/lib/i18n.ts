@@ -15,6 +15,30 @@ type ProjectCopy = {
   tags: string[];
 };
 
+type SiteCopy = {
+  film: { tags: string[]; chips: string[] };
+  nav: { services: string; projects: string; motion: string; contact: string; cta: string };
+  hero: { tag: string; open: string; word: string; before: string; strong: string; seeProjects: string; quote: string };
+  statement: { h1: string; before: string; w1: string; w2: string; lead: string; cta: string; secondary: string; hint: string };
+  services: {
+    pill: string;
+    h2: string;
+    lead: string;
+    cards: { title: string; text: string; cta: string }[];
+  };
+  showcase: { pill: string; h2: string; lead: string; live: string; concept: string; soon: string; personal: string };
+  motion: {
+    pill: string;
+    h2: string;
+    lead: string;
+    word: string;
+    sound: string;
+    muted: string;
+    items: { title: string; meta: string }[];
+  };
+  cta: { kicker: string; h2: string; lead: string; button: string; top: string; copy: string; chat: { file: string; spec: string; exporting: string; done: string; online: string; placeholder: string; msg: string; reply: string; time: string } };
+};
+
 type Dict = {
   metaTitle: string;
   metaDescription: string;
@@ -30,6 +54,7 @@ type Dict = {
     secondary: string;
   };
   live: string;
+  s: SiteCopy;
   loaderRole: string;
   skip: string;
   reveal: {
@@ -101,9 +126,9 @@ type Dict = {
 
 export const copy: Record<Lang, Dict> = {
   pt: {
-    metaTitle: "Lucas Henrique — Sites que convertem visita em orçamento fechado",
+    metaTitle: "Lucas Henrique — Sites e vídeos que prendem a atenção",
     metaDescription:
-      "Landing pages e sites institucionais que resolvem conversão. Copy, visual e um próximo passo — veja os projetos ao vivo.",
+      "Landing pages, sites e motion design que transformam visita em orçamento. Veja os projetos ao vivo.",
     nav: { problems: "Problemas", work: "Projetos", process: "Processo", faq: "FAQ", cta: "Pedir orçamento" },
     hero: {
       chip: "Novembro · briefing aberto",
@@ -116,6 +141,80 @@ export const copy: Record<Lang, Dict> = {
       secondary: "Ver projetos ao vivo",
     },
     live: "Abrir ao vivo",
+    s: {
+      film: { tags: ["01 copy", "02 visual", "03 próximo passo"], chips: ["Home", "Sobre", "Serviços", "Projetos", "Contato"] },
+      nav: { services: "Serviços", projects: "Projetos", motion: "Motion", contact: "Contato", cta: "Pedir orçamento" },
+      hero: {
+        tag: "Lucas Henrique — Portfólio 2026",
+        open: "Aberto para projetos",
+        word: "LUCAS",
+        before: "Crio sites e vídeos que ",
+        strong: "prendem a atenção e transformam visita em orçamento.",
+        seeProjects: "Ver projetos",
+        quote: "Pedir orçamento →",
+      },
+      statement: {
+        h1: "Ninguém presta atenção no que é comum.",
+        before: "Ninguém presta atenção no que é ",
+        w1: "comum",
+        w2: "incomum",
+        hint: "Role",
+        lead: "Eu crio sites e vídeos que elevam a primeira impressão da sua marca.",
+        cta: "Começar um projeto",
+        secondary: "Ver projetos",
+      },
+      services: {
+        pill: "O que eu construo",
+        h2: "Do zero, até o último detalhe.",
+        lead: "Landing pages, sites e vídeos de motion, cada um desenhado com copy, visual e um próximo passo claro.",
+        cards: [
+          { title: "Landing pages", text: "Uma página com uma ideia só, desenhada para apresentar, vender e converter.", cta: "Ver landing pages" },
+          { title: "Sites", text: "Várias páginas na mesma linguagem, do institucional ao sistema, prontas para crescer com o seu negócio.", cta: "Ver sites" },
+          { title: "Motion design", text: "Vídeos de produto e de marca que explicam, vendem e ficam na memória.", cta: "Ver vídeos" },
+        ],
+      },
+      showcase: {
+        pill: "Projetos",
+        h2: "Cada projeto, uma identidade.",
+        lead: "Alguns dos projetos que desenhei: de produto em 3D a profissional autônomo e restaurante. Clique para ver ao vivo, sem sair daqui.",
+        live: "Ver ao vivo",
+        concept: "Projeto-conceito",
+        soon: "Em breve ao vivo",
+        personal: "Projeto pessoal",
+      },
+      motion: {
+        pill: "Motion design",
+        h2: "Movimento que segura o olhar.",
+        lead: "Vídeos de produto e de marca, do roteiro à animação. Três trabalhos meus.",
+        word: "MOTION",
+        sound: "Ativar som",
+        muted: "Silenciar",
+        items: [
+          { title: "Terus", meta: "Apresentação · 30 s · 9:16" },
+          { title: "Converto", meta: "Prévia de apresentação · 1 min · 9:16" },
+          { title: "Meu Reels", meta: "Apresentação · 52 s · 9:16" },
+        ],
+      },
+      cta: {
+        kicker: "Vamos conversar?",
+        h2: "O resto eu resolvo.",
+        lead: "Me conta o seu negócio, o que você quer vender e o prazo. Eu volto com uma ideia e uma proposta.",
+        button: "Começar um projeto",
+        top: "Voltar ao topo",
+        copy: "© 2026 Lucas Henrique",
+        chat: {
+          file: "lucas-henrique-final.mp4",
+          spec: "H.264 · 1080×1920 · 30 fps",
+          exporting: "Exportando",
+          done: "Exportado",
+          online: "online agora",
+          placeholder: "Escreva sua mensagem",
+          msg: "Oi, Lucas! Vi seu trabalho e quero um site que converta.",
+          reply: "Chegou! Já te respondo por aqui.",
+          time: "agora",
+        },
+      },
+    },
     loaderRole: "Designer e desenvolvedor de landing pages",
     skip: "Pular para os projetos",
     reveal: {
@@ -247,6 +346,34 @@ export const copy: Record<Lang, Dict> = {
     },
     waText: "Oi Lucas! Vi seu site e quero um orçamento para um site que converta.",
     projects: {
+      "g-steel": {
+        niche: "Produto 3D · conceito",
+        problem: "Um produto técnico, difícil de entender numa foto parada.",
+        solution: "Modelo 3D interativo e tipografia gigante levando o olhar até os detalhes.",
+        result: "O visitante explora o produto antes de ler uma linha.",
+        tags: ["3D", "Conceito"],
+      },
+      clarissa: {
+        niche: "Professora de inglês",
+        problem: "Cursos e experiências espalhados, sem um caminho claro até o contato.",
+        solution: "Página única com identidade própria, cursos em destaque e WhatsApp em cada dobra.",
+        result: "Quem chama já sabe qual curso quer.",
+        tags: ["Profissional autônomo", "Landing page"],
+      },
+      muell: {
+        niche: "Tatuagem realista",
+        problem: "Trabalho forte, mas sem uma vitrine que filtrasse quem só queria preço.",
+        solution: "Trabalhos em primeiro plano, processo explicado e orçamento a um clique.",
+        result: "O pedido de orçamento já chega com a ideia da tattoo.",
+        tags: ["Profissional autônomo", "Portfólio"],
+      },
+      shari: {
+        niche: "Restaurante · projeto pessoal",
+        problem: "Balcão, rodízio e delivery disputando a atenção na mesma página.",
+        solution: "Uma página-cartaz: cores que mudam por horário, cardápio em movimento e reserva em destaque.",
+        result: "O visitante entende as três formas de comer e escolhe a sua.",
+        tags: ["Restaurante", "Movimento"],
+      },
       "malu-nutri": {
         niche: "Nutrição",
         problem: "Marca pessoal dispersa entre rotina, cupons e parcerias — o seguidor não sabia o que fazer.",
@@ -299,9 +426,9 @@ export const copy: Record<Lang, Dict> = {
     },
   },
   en: {
-    metaTitle: "Lucas Henrique — Sites that turn a visit into a closed quote",
+    metaTitle: "Lucas Henrique — Sites and videos that grab attention",
     metaDescription:
-      "Landing pages and institutional sites built to convert. Copy, design, one next step — browse the live work.",
+      "Landing pages, sites and motion design that turn visits into quotes. Browse the live work.",
     nav: { problems: "Problems", work: "Work", process: "Process", faq: "FAQ", cta: "Request a quote" },
     hero: {
       chip: "November · briefing open",
@@ -314,6 +441,80 @@ export const copy: Record<Lang, Dict> = {
       secondary: "See live projects",
     },
     live: "Open live",
+    s: {
+      film: { tags: ["01 copy", "02 visual", "03 next step"], chips: ["Home", "About", "Services", "Projects", "Contact"] },
+      nav: { services: "Services", projects: "Projects", motion: "Motion", contact: "Contact", cta: "Request a quote" },
+      hero: {
+        tag: "Lucas Henrique — Portfolio 2026",
+        open: "Open for projects",
+        word: "LUCAS",
+        before: "Sites and videos that ",
+        strong: "grab attention and turn visits into quotes.",
+        seeProjects: "See projects",
+        quote: "Request a quote →",
+      },
+      statement: {
+        h1: "Nobody pays attention to the ordinary.",
+        before: "Nobody pays attention to the ",
+        w1: "ordinary",
+        w2: "extraordinary",
+        hint: "Scroll",
+        lead: "I build sites and videos that raise the first impression of your brand.",
+        cta: "Start a project",
+        secondary: "See projects",
+      },
+      services: {
+        pill: "What I build",
+        h2: "From scratch, down to the last detail.",
+        lead: "Landing pages, sites and motion videos, each designed with copy, visuals and a clear next step.",
+        cards: [
+          { title: "Landing pages", text: "One page with a single idea, designed to present, sell and convert.", cta: "See landing pages" },
+          { title: "Sites", text: "Several pages in the same language, from institutional to systems, ready to grow with your business.", cta: "See sites" },
+          { title: "Motion design", text: "Product and brand videos that explain, sell and stay in memory.", cta: "See videos" },
+        ],
+      },
+      showcase: {
+        pill: "Projects",
+        h2: "Every project, its own identity.",
+        lead: "Some of the projects I designed: from a 3D product to a solo professional and a restaurant. Click to see them live, without leaving here.",
+        live: "See live",
+        concept: "Concept project",
+        soon: "Live soon",
+        personal: "Personal project",
+      },
+      motion: {
+        pill: "Motion design",
+        h2: "Motion that holds the eye.",
+        lead: "Product and brand videos, from script to animation. Three pieces of mine.",
+        word: "MOTION",
+        sound: "Turn sound on",
+        muted: "Mute",
+        items: [
+          { title: "Terus", meta: "Presentation · 30 s · 9:16" },
+          { title: "Converto", meta: "Presentation preview · 1 min · 9:16" },
+          { title: "My Reels", meta: "Presentation · 52 s · 9:16" },
+        ],
+      },
+      cta: {
+        kicker: "Let's talk?",
+        h2: "I'll handle the rest.",
+        lead: "Tell me about your business, what you want to sell and the deadline. I'll come back with an idea and a proposal.",
+        button: "Start a project",
+        top: "Back to top",
+        copy: "© 2026 Lucas Henrique",
+        chat: {
+          file: "lucas-henrique-final.mp4",
+          spec: "H.264 · 1080×1920 · 30 fps",
+          exporting: "Exporting",
+          done: "Exported",
+          online: "online now",
+          placeholder: "Type your message",
+          msg: "Hi, Lucas! I saw your work and I want a site that converts.",
+          reply: "Got it! I will reply right here.",
+          time: "now",
+        },
+      },
+    },
     loaderRole: "Landing page designer & developer",
     skip: "Skip to projects",
     reveal: {
@@ -445,6 +646,34 @@ export const copy: Record<Lang, Dict> = {
     },
     waText: "Hi Lucas! I saw your site and I want a quote for a page that converts.",
     projects: {
+      "g-steel": {
+        niche: "3D product · concept",
+        problem: "A technical product that is hard to grasp in a still photo.",
+        solution: "An interactive 3D model and giant type that lead the eye to the details.",
+        result: "The visitor explores the product before reading a line.",
+        tags: ["3D", "Concept"],
+      },
+      clarissa: {
+        niche: "English teacher",
+        problem: "Courses and experiences scattered, with no clear path to contact.",
+        solution: "A single page with its own identity, featured courses and WhatsApp on every fold.",
+        result: "Whoever reaches out already knows which course they want.",
+        tags: ["Solo professional", "Landing page"],
+      },
+      muell: {
+        niche: "Realistic tattoo",
+        problem: "Strong work, but no showcase to filter out those who only wanted a price.",
+        solution: "Work up front, the process explained and a quote one click away.",
+        result: "The quote request already arrives with the tattoo idea.",
+        tags: ["Solo professional", "Portfolio"],
+      },
+      shari: {
+        niche: "Restaurant · personal project",
+        problem: "Counter, all-you-can-eat and delivery fighting for attention on one page.",
+        solution: "A poster-style page: colors that change by time of day, a moving menu and booking up front.",
+        result: "The visitor grasps the three ways to eat and picks theirs.",
+        tags: ["Restaurant", "Motion"],
+      },
       "malu-nutri": {
         niche: "Nutrition",
         problem: "A personal brand scattered across routine, coupons and partnerships — the follower didn’t know what to do.",
