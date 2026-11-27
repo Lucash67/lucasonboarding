@@ -34,6 +34,12 @@ export function useTrailMask(stage: RefObject<HTMLElement | null>, layer: RefObj
       top.style.maskRepeat = "no-repeat";
       top.style.webkitMaskRepeat = "no-repeat";
     };
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!finePointer) {
+      // celular/tablet: sem efeito de rastro, para o dedo só rolar a página
+      setMask("linear-gradient(transparent, transparent)");
+      return;
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setMask(auto ? "none" : "linear-gradient(transparent, transparent)");
       return;
@@ -64,6 +70,7 @@ export function useTrailMask(stage: RefObject<HTMLElement | null>, layer: RefObj
     };
 
     const onMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       const b = top.getBoundingClientRect();
       const now = performance.now();
       pointer = true;

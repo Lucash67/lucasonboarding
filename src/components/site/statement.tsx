@@ -2,64 +2,13 @@ import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTran
 import { useRef } from "react";
 import { useI18n } from "@/components/site/i18n";
 import { RollText } from "@/components/site/motion";
-import { webProjects } from "@/lib/projects";
 
-// A parede repete a cada PC×PR células (necessário para a deriva diagonal fechar o loop).
-// O padrão dentro desse bloco é embaralhado, então não se vê colunas alternando.
-const PC = 8;
-const PR = 6;
-const COLS = PC * 2;
-const ROWS = PR * 2;
-
-function mulberry32(a: number) {
-  return () => {
-    a |= 0;
-    a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-/**
- * Sorteio determinístico (mesma saída no servidor e no navegador): cada célula recebe um site
- * diferente de todos os vizinhos (inclusive nas bordas do bloco, que se repetem), e todos os
- * sites aparecem quase o mesmo número de vezes.
- */
-function buildPattern(n: number): number[][] {
-  for (let seed = 1; seed < 500; seed++) {
-    const rnd = mulberry32(seed * 7919);
-    const grid: number[][] = Array.from({ length: PR }, () => Array(PC).fill(-1));
-    const used = Array(n).fill(0);
-    let ok = true;
-    for (let r = 0; r < PR && ok; r++) {
-      for (let c = 0; c < PC && ok; c++) {
-        const banned = new Set<number>();
-        for (let dr = -1; dr <= 1; dr++) {
-          for (let dc = -1; dc <= 1; dc++) {
-            if (!dr && !dc) continue;
-            const v = grid[(r + dr + PR) % PR]![(c + dc + PC) % PC]!;
-            if (v >= 0) banned.add(v);
-          }
-        }
-        const options = Array.from({ length: n }, (_, i) => i).filter((i) => !banned.has(i));
-        if (!options.length) {
-          ok = false;
-          break;
-        }
-        const min = Math.min(...options.map((i) => used[i]!));
-        const best = options.filter((i) => used[i] === min);
-        const pick = best[Math.floor(rnd() * best.length)]!;
-        grid[r]![c] = pick;
-        used[pick]!++;
-      }
-    }
-    if (ok) return grid;
-  }
-  return Array.from({ length: PR }, (_, r) => Array.from({ length: PC }, (_, c) => (r * PC + c) % n));
-}
-
-const PATTERN = buildPattern(webProjects.length);
+// A parede é UMA imagem pré-montada (public/walls/wall.webp = bloco de 8×6 sites) repetida em mosaico.
+// Antes eram 192 elementos com <img>, sombra e filtro; agora é uma só camada, bem mais leve de animar.
+const WALL_W = 8 * 278;
+const WALL_H = 6 * 180.5;
+const COLS = 16;
+const ROWS = 12;
 
 // Fração da rolagem fixa da seção gasta enquanto a hero ainda está saindo (100svh de 440svh).
 const REVEAL = 100 / 440;
@@ -105,8 +54,6 @@ export function Statement() {
   const phrase = useTransform([q, tail] as never, ([a, b]: number[]) => Math.min(1, Math.max(0, (a! - 0.7) / 0.3)) * (1 - b! * 0.95));
   const wallFade = useTransform(tail, [0, 1], [1, 0.35]);
 
-  const list = webProjects;
-
   return (
     <section
       id="statement"
@@ -121,18 +68,10 @@ export function Statement() {
         {/* Parede em perspectiva */}
         <div aria-hidden className="absolute inset-0 [perspective-origin:50%_40%] [perspective:1300px]">
           <motion.div className="absolute left-1/2 top-[52%] [transform-style:preserve-3d]" style={{ transform: wall, opacity: wallFade, willChange: "transform" }}>
-            <div className="animate-drift-wall grid w-max gap-[18px]" style={{ gridTemplateColumns: `repeat(${COLS}, 260px)` }}>
-              {Array.from({ length: ROWS * COLS }).map((_, k) => {
-                const r = Math.floor(k / COLS);
-                const c = k % COLS;
-                const project = list[PATTERN[r % PR]![c % PC]!]!;
-                return (
-                  <div key={k} className="h-[162.5px] w-[260px] overflow-hidden rounded-[14px] border border-white/15 bg-card shadow-[0_20px_40px_-20px_#000]">
-                    <img src={project.cover} alt="" loading="lazy" draggable={false} className="h-full w-full object-cover object-top brightness-90" />
-                  </div>
-                );
-              })}
-            </div>
+            <div
+              className="animate-drift-wall"
+              style={{ width: COLS * 278, height: ROWS * 180.5, backgroundImage: "url(/walls/wall.webp)", backgroundSize: `${WALL_W}px ${WALL_H}px`, backgroundRepeat: "repeat" }}
+            />
           </motion.div>
         </div>
 

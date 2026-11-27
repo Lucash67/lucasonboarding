@@ -26,7 +26,7 @@ export function Nav() {
         </nav>
 
         <a href="#inicio" aria-label="Lucas Henrique" className="flex items-center gap-2.5">
-          <img src="/lucas/avatar.webp" alt="" width={34} height={34} className="h-[34px] w-[34px] rounded-full border border-foreground/30 object-cover" />
+          <span aria-hidden className="grid h-[34px] w-[34px] place-items-center rounded-full border border-foreground/30 font-display text-[13px] font-bold tracking-tight">LC</span>
           <span className="font-display text-lg font-semibold md:hidden">lucas</span>
         </a>
 

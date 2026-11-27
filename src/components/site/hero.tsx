@@ -56,7 +56,7 @@ export function Hero() {
 
       {/* Foto deitada (16:9), recortada, com fade na base */}
       <div className="pointer-events-none absolute inset-x-0 -bottom-[6svh] z-10 flex justify-center">
-        <div className="relative" style={{ height: "clamp(640px, 130svh, 1500px)", aspectRatio: "16 / 9", maskImage: FADE, WebkitMaskImage: FADE }}>
+        <div className="relative h-[clamp(450px,92svh,1500px)] sm:h-[clamp(640px,130svh,1500px)]" style={{ aspectRatio: "16 / 9", maskImage: FADE, WebkitMaskImage: FADE }}>
           <motion.img
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

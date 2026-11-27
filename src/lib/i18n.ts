@@ -56,6 +56,7 @@ type Dict = {
   live: string;
   s: SiteCopy;
   loaderRole: string;
+  loaderHint: string;
   skip: string;
   reveal: {
     plain: string;
@@ -216,6 +217,7 @@ export const copy: Record<Lang, Dict> = {
       },
     },
     loaderRole: "Designer e desenvolvedor de landing pages",
+    loaderHint: "Carregando o portfólio",
     skip: "Pular para os projetos",
     reveal: {
       plain: "Site comum",
@@ -516,6 +518,7 @@ export const copy: Record<Lang, Dict> = {
       },
     },
     loaderRole: "Landing page designer & developer",
+    loaderHint: "Loading the portfolio",
     skip: "Skip to projects",
     reveal: {
       plain: "Plain site",

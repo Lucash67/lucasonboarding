@@ -50,6 +50,13 @@ export function Film() {
     const video = E.video as HTMLVideoElement | null;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let playing = false;
+    // larguras medidas uma vez (e no resize), para não forçar reflow a cada quadro da rolagem
+    const dims = { ww: 600, w: 400 };
+    const measure = () => {
+      dims.ww = E.browser?.offsetWidth ?? 600;
+      dims.w = E.stack?.offsetWidth ?? 400;
+    };
+    measure();
 
     const onTime = () => {
       if (video && E.tc) E.tc.textContent = `00:${String(Math.floor(video.currentTime)).padStart(2, "0")} / 00:52`;
@@ -64,7 +71,7 @@ export function Film() {
 
       // cena 1
       if (E.browser) E.browser.style.transform = `rotateX(${14 - 10 * a}deg) rotateY(${-24 + 18 * a}deg) rotateZ(${-3 + 3 * a}deg) translateY(${(-a * 10).toFixed(1)}px)`;
-      const ww = E.browser?.offsetWidth ?? 600;
+      const ww = dims.ww;
       L.slices.forEach((d, i) => {
         if (!d) return;
         const q = ease((a - i * 0.1) / 0.42);
@@ -83,7 +90,7 @@ export function Film() {
       // cena 2
       const ex = ease((b - 0.12) / 0.5);
       const enter = clamp(b / 0.22);
-      const w = E.stack?.offsetWidth ?? 400;
+      const w = dims.w;
       const gap = w * 0.26;
       if (E.stack) E.stack.style.transform = `rotateX(58deg) rotateZ(${-38 + 24 * b}deg) translateY(${((1 - ease(b / 0.3)) * w * 0.14).toFixed(1)}px)`;
       L.planes.forEach((pl, i) => {
@@ -135,12 +142,25 @@ export function Film() {
       if (E.hudt) E.hudt.textContent = inView ? `${String(scene + 1).padStart(2, "0")} · ${s.cards[scene]!.title}` : "";
       if (E.hudbar) E.hudbar.style.width = `${p * 100}%`;
     };
+    let tick = 0;
+    const onScroll = () => {
+      if (tick) return;
+      tick = requestAnimationFrame(() => {
+        tick = 0;
+        update();
+      });
+    };
+    const onResize = () => {
+      measure();
+      update();
+    };
     update();
-    addEventListener("scroll", update, { passive: true });
-    addEventListener("resize", update);
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onResize);
     return () => {
-      removeEventListener("scroll", update);
-      removeEventListener("resize", update);
+      cancelAnimationFrame(tick);
+      removeEventListener("scroll", onScroll);
+      removeEventListener("resize", onResize);
       video?.removeEventListener("timeupdate", onTime);
     };
   }, [s.cards]);

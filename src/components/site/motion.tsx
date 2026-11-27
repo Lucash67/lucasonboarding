@@ -1,20 +1,49 @@
 import { motion, useMotionValue, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useRef, type ReactNode } from "react";
 
+type LenisLike = { raf: (t: number) => void; destroy: () => void; scrollTo: (t: number | HTMLElement, o?: { duration?: number; easing?: (t: number) => number }) => void };
+
+/**
+ * Rolagem suave (Lenis) e links de âncora que DESLIZAM até a seção, em vez de teletransportar.
+ * A duração cresce com a distância, para trechos longos não passarem voando.
+ */
 export function SmoothScroll() {
   useEffect(() => {
     let raf = 0;
-    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
+    let lenis: LenisLike | null = null;
+    let onClick: ((e: MouseEvent) => void) | null = null;
     import("lenis").then(({ default: Lenis }) => {
-      lenis = new Lenis({ lerp: 0.1 });
+      const l = new Lenis({ lerp: 0.1 }) as unknown as LenisLike;
+      lenis = l;
       const loop = (t: number) => {
-        lenis?.raf(t);
+        l.raf(t);
         raf = requestAnimationFrame(loop);
       };
       raf = requestAnimationFrame(loop);
+
+      onClick = (e: MouseEvent) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const a = (e.target as Element | null)?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+        const id = a?.getAttribute("href");
+        if (!a || !id || id.length < 2) return;
+        let el: HTMLElement | null = null;
+        try {
+          el = document.querySelector<HTMLElement>(id);
+        } catch {
+          return;
+        }
+        if (!el) return;
+        e.preventDefault();
+        const top = id === "#inicio" ? 0 : el.getBoundingClientRect().top + window.scrollY;
+        const dist = Math.abs(top - window.scrollY);
+        const duration = Math.min(2.8, Math.max(1.1, dist / 3200 + 0.9));
+        l.scrollTo(top, { duration, easing: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2) });
+      };
+      document.addEventListener("click", onClick);
     });
     return () => {
       cancelAnimationFrame(raf);
+      if (onClick) document.removeEventListener("click", onClick);
       lenis?.destroy();
     };
   }, []);

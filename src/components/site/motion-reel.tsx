@@ -29,7 +29,8 @@ export function MotionReel() {
   const vids = useRef<(HTMLVideoElement | null)[]>([]);
   const [active, setActive] = useState(0);
   const [sound, setSound] = useState(false);
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
+  const blocked = useRef(false); // o navegador barrou o início automático
   const [reduce, setReduce] = useState(false);
   const activeRef = useRef(0);
   const soundRef = useRef(false);
@@ -53,7 +54,10 @@ export function MotionReel() {
         } catch {
           /* ainda sem metadados */
         }
-        void v.play().catch(() => setPaused(true));
+        void v.play().catch(() => {
+          blocked.current = true;
+          setPaused(true);
+        });
       } else v.pause();
     });
     if (cut && mon.current) {
@@ -88,12 +92,32 @@ export function MotionReel() {
       const pad = (n: number) => String(n).padStart(2, "0");
       if (tc.current) tc.current.textContent = `00:${pad(Math.floor(tot / 60))}:${pad(Math.floor(tot % 60))}:${pad(Math.floor((tot % 1) * 30))}`;
     };
+    let tick = 0;
+    const onScroll = () => {
+      if (tick) return;
+      tick = requestAnimationFrame(() => {
+        tick = 0;
+        update();
+      });
+    };
+    // se o navegador barrou o autoplay (ex.: economia de bateria), o primeiro toque/tecla já inicia o vídeo
+    const kick = () => {
+      if (!blocked.current) return;
+      const v = vids.current[activeRef.current];
+      const rc = el.getBoundingClientRect();
+      if (v && v.paused && rc.top < innerHeight && rc.bottom > 0) void v.play().catch(() => undefined);
+    };
     update();
-    addEventListener("scroll", update, { passive: true });
+    addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", update);
+    addEventListener("touchstart", kick, { passive: true });
+    addEventListener("pointerdown", kick, { passive: true });
     return () => {
-      removeEventListener("scroll", update);
+      cancelAnimationFrame(tick);
+      removeEventListener("scroll", onScroll);
       removeEventListener("resize", update);
+      removeEventListener("touchstart", kick);
+      removeEventListener("pointerdown", kick);
       vids.current.forEach((v) => v?.pause());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -191,7 +215,11 @@ export function MotionReel() {
                     const s = c.start;
                     if (s) e.currentTarget.currentTime = s;
                   }}
-                  onPlay={() => i === activeRef.current && setPaused(false)}
+                  onPlay={() => {
+                    if (i !== activeRef.current) return;
+                    blocked.current = false;
+                    setPaused(false);
+                  }}
                   onPause={() => i === activeRef.current && setPaused(true)}
                 />
               ))}
