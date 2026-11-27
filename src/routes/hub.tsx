@@ -163,6 +163,9 @@ function Hub() {
                 <a href={`mailto:${EMAIL}`} className="rounded-full border border-border px-6 py-3 font-medium transition hover:bg-secondary">
                   Falar comigo
                 </a>
+                <a href="/Lucas_Campos_de_Matos_Curriculo.pdf" target="_blank" rel="noreferrer" className="rounded-full border border-border px-6 py-3 font-medium transition hover:bg-secondary">
+                  Currículo (PDF)
+                </a>
               </motion.div>
             </div>
             <motion.div {...fade} className="mx-auto w-52 md:w-full">
@@ -183,7 +186,8 @@ function Hub() {
                 <p>
                   <span className="font-semibold text-foreground">O problema.</span> No ambiente de estágio, percebi
                   demanda por lanches e montei uma operação própria de salgados em autoatendimento: deixo a caixa no
-                  local, os colegas pegam, pagam por Pix ou aproximação e seguem para o refeitório.
+                  local, os colegas pegam, pagam por Pix ou em espécie e seguem para o refeitório. Em casos
+                  excepcionais, falam comigo pelo WhatsApp, por um QR Code na caixa.
                 </p>
                 <p>
                   <span className="font-semibold text-foreground">A consequência.</span> O modelo funcionou, e criou um
@@ -315,9 +319,10 @@ function Hub() {
                     de produtos, rotinas de operação e relatórios de desempenho de campanhas.
                   </li>
                   <li>
-                    <span className="text-foreground">Produtos digitais na Terus (desde abr/2026).</span> Apoio ao
-                    desenvolvimento de produtos de uma startup de inteligência para supply chain, incluindo site
-                    institucional e vídeo de apresentação em motion design.
+                    <span className="text-foreground">Produtos digitais na Terus (desde abr/2026).</span> Apoio o
+                    desenvolvimento front-end dos produtos de uma startup de inteligência para supply chain, além do
+                    site institucional e do vídeo de apresentação em motion design. Acompanho o back-end e as
+                    automações para aprender e praticar.
                   </li>
                   <li>
                     <span className="text-foreground">Converto, agência.</span> Colaboro com ideação, conteúdo e
