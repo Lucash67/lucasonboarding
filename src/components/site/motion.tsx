@@ -157,6 +157,16 @@ export function Magnetic({ children, className = "" }: { children: ReactNode; cl
   );
 }
 
+/** Label that rolls up on hover (the hover itself lives in styles.css `.roll`). */
+export function RollText({ children }: { children: string }) {
+  return (
+    <span className="roll">
+      <span>{children}</span>
+      <span aria-hidden>{children}</span>
+    </span>
+  );
+}
+
 export function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {

@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { LangProvider } from "@/components/site/i18n";
+import { themeBootScript } from "@/components/site/theme";
 
 function NotFoundComponent() {
   return (
@@ -85,6 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "canonical", href: "https://lucashportfolio.vercel.app/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400..700&display=swap" },
@@ -99,12 +102,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" data-theme="preto" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
         <HeadContent />
       </head>
       <body>
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": "https://lucashportfolio.vercel.app/#website",
+                  url: "https://lucashportfolio.vercel.app/",
+                  name: "Lucas Henrique",
+                  inLanguage: "pt-BR",
+                },
+                {
+                  "@type": "Person",
+                  "@id": "https://lucashportfolio.vercel.app/#lucas",
+                  name: "Lucas Henrique",
+                  url: "https://lucashportfolio.vercel.app/",
+                  jobTitle: "Designer e desenvolvedor de landing pages",
+                  image: "https://lucashportfolio.vercel.app/og.jpg",
+                },
+              ],
+            }),
+          }}
+        />
         <Scripts />
       </body>
     </html>
@@ -116,8 +145,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <LangProvider>
+        <Outlet />
+      </LangProvider>
     </QueryClientProvider>
   );
 }

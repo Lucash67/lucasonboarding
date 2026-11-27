@@ -12,9 +12,15 @@ export type Project = {
   tags: string[];
 };
 
+export const WHATSAPP_NUMBER = "5585996505083";
+
 export const WHATSAPP =
   "https://wa.me/5585996505083?text=" +
   encodeURIComponent("Oi Lucas! Vi seu site e quero um orçamento para um site que converta.");
+
+export function whatsappUrl(text: string) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
 
 export const projects: Project[] = [
   {
@@ -139,3 +145,5 @@ export const projects: Project[] = [
     tags: ["App", "Saúde"],
   },
 ];
+
+export const webProjects = projects.filter((p) => p.category !== "Sistema");
