@@ -67,10 +67,10 @@ function ExtLink({ href, children, className = "" }: { href: string; children: R
 }
 
 const stats = [
-  { n: "513", l: "vendas registradas" },
-  { n: "660", l: "itens vendidos (589 salgados + 71 sanduíches)" },
-  { n: "22,6", l: "vendas por dia, em média" },
-  { n: "33", l: "dias de operação auditados" },
+  { n: "1.861", l: "vendas registradas" },
+  { n: "2.510", l: "itens vendidos" },
+  { n: "91", l: "dias de operação" },
+  { n: "20,4", l: "vendas por dia, em média" },
 ];
 
 const zaivonFeatures = [
@@ -205,7 +205,7 @@ function Hub() {
                   </div>
                 ))}
                 <p className="col-span-2 mt-1 text-xs text-muted-foreground">
-                  Volume registrado entre 15/10 e 16/11/2026. Números de contagem, sem valores financeiros.
+                  Dados do próprio sistema, de 16/07 a 24/11/2026. Números de contagem, sem valores financeiros.
                 </p>
               </motion.dl>
             </div>
@@ -298,6 +298,10 @@ function Hub() {
                   negócios de verdade.
                 </p>
                 <p>
+                  Empreendo desde os 14 anos: brigadeiros no primeiro ano do ensino médio, salgados no segundo e no
+                  terceiro, dropshipping, infoprodutos e, hoje, vibe coding para vender sites e vídeos.
+                </p>
+                <p>
                   Quero colaborar em projetos que não são meus, aprender com quem está alguns passos à frente e
                   contribuir com o que já faço bem: entender um problema de negócio e transformá-lo rápido em
                   protótipo, sistema ou material visual.
@@ -307,13 +311,17 @@ function Hub() {
                 <h3 className="font-display text-base font-semibold">Hoje</h3>
                 <ul className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <li>
-                    <span className="text-foreground">Estágio em e-commerce.</span> Cadastro e revisão de produtos,
-                    rotinas de operação e relatórios de desempenho de campanhas.
+                    <span className="text-foreground">Estágio em e-commerce (desde jul/2026).</span> Cadastro e revisão
+                    de produtos, rotinas de operação e relatórios de desempenho de campanhas.
                   </li>
                   <li>
-                    <span className="text-foreground">Estágio em produtos digitais.</span> Apoio ao desenvolvimento de
-                    produtos de uma startup de inteligência para supply chain, incluindo site institucional e vídeo de
-                    apresentação em motion design.
+                    <span className="text-foreground">Produtos digitais na Terus (desde abr/2026).</span> Apoio ao
+                    desenvolvimento de produtos de uma startup de inteligência para supply chain, incluindo site
+                    institucional e vídeo de apresentação em motion design.
+                  </li>
+                  <li>
+                    <span className="text-foreground">Converto, agência.</span> Colaboro com ideação, conteúdo e
+                    estratégia; atuação integral prevista para 2027.
                   </li>
                   <li>
                     <span className="text-foreground">Formação.</span> Negócios na Unifor (3º semestre) e Marketing
